@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0f19">
+<title>MB Novels | Fantasy Worlds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IM+Fell+English+SC&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-deep: #0b0f19; --bg-card: #151b2b; --bg-paper: #1e2538;
+  --gold: #d4af37; --gold-dim: #8a7020; --wine: #722f37;
+  --text-main: #e0e6ed; --text-muted: #94a3b8;
+  --line: rgba(212, 175, 55, 0.15); --line-strong: rgba(212, 175, 55, 0.4);
+  --font-display-en: 'Cinzel', serif; --font-body-en: 'Crimson Text', serif; --font-accent-en: 'IM Fell English SC', serif;
+  --font-display-ar: 'Reem Kufi', sans-serif; --font-body-ar: 'Amiri', serif;
+  --ease: cubic-bezier(.22,.75,.2,1);
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--bg-deep); color: var(--text-main); font-family: var(--font-body-en); font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+html[lang="ar"] body { font-family: var(--font-body-ar); }
+html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] .brand-text strong { font-family: var(--font-display-ar); }
+::selection { background: var(--wine); color: #fff; }
+a { color: inherit; text-decoration: none; transition: color .3s; }
+img { display: block; max-width: 100%; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.grain { position: fixed; top:0; bottom:0; left:0; right:0; z-index: 999; pointer-events: none; opacity: 0.04; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+h1, h2, h3 { font-family: var(--font-display-en); color: var(--gold); line-height: 1.25; word-wrap: break-word; }
+.eyebrow { font-family: var(--font-accent-en); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); display: inline-block; margin-bottom: 12px; }
+.eyebrow::before { content:"✦ "; color: var(--gold); }
+html[lang="ar"] .eyebrow { font-family: var(--font-body-ar); letter-spacing: normal; }
+.rv { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); transition-delay: calc(var(--i,0) * 100ms); }
+.rv.on { opacity: 1; transform: none; }
+
+.tg-hint { background: var(--wine); color: #fff; padding: 10px 16px; font-size: 13px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.tg-hint[hidden] { display: none; }
+.tg-hint button { color: var(--gold); font-size: 16px; margin-left: 12px; font-weight: bold; }
+html[dir="rtl"] .tg-hint button { margin-left: 0; margin-right: 12px; }
+
+.site-head { position: sticky; top: 0; z-index: 100; background: rgba(11, 15, 25, 0.97); border-bottom: 1px solid var(--line); }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+.brand { display: flex; align-items: center; }
+.logo-mark { width: 44px; height: 44px; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-display-en); font-weight: 800; font-size: 17px; color: var(--gold); background: rgba(212, 175, 55, 0.05); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); flex-shrink: 0; transition: 0.4s var(--ease); }
+.brand:hover .logo-mark { background: var(--gold); color: var(--bg-deep); transform: rotate(10deg); }
+.brand-text { margin-left: 12px; }
+html[dir="rtl"] .brand-text { margin-left: 0; margin-right: 12px; }
+.brand-text strong { font-size: 19px; display: block; letter-spacing: 0.04em; color: var(--text-main); }
+.brand-text em { font-style: normal; font-size: 10px; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; display: block; }
+.nav-actions { display: flex; align-items: center; }
+.lang-btn { font-family: var(--font-accent-en); font-size: 11px; letter-spacing: 0.08em; color: var(--gold); border: 1px solid var(--line-strong); padding: 10px 12px; text-transform: uppercase; min-height: 40px; }
+.lang-btn:hover { background: var(--gold); color: var(--bg-deep); }
+.burger { display: none; color: var(--gold); font-size: 24px; width: 44px; height: 44px; align-items: center; justify-content: center; margin-left: 6px; }
+html[dir="rtl"] .burger { margin-left: 0; margin-right: 6px; }
+.nav-links { display: flex; align-items: center; }
+.nav-links a { font-family: var(--font-accent-en); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-left: 26px; position: relative; padding: 8px 0; }
+html[dir="rtl"] .nav-links a { margin-left: 0; margin-right: 26px; }
+.nav-links a::after { content:''; position: absolute; bottom: 2px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s var(--ease); }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+@media (max-width: 900px) {
+  .burger { display: flex; }
+  .brand-text em { display: none; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-deep); flex-direction: column; border-bottom: 2px solid var(--gold); box-shadow: 0 25px 50px rgba(0,0,0,0.6); padding: 8px 20px 16px; z-index: 99; }
+  body.menu-open .nav-links { display: flex; }
+  .nav-links a { margin: 0; padding: 16px 6px; width: 100%; text-align: center; font-size: 17px; border-bottom: 1px dashed var(--line); color: var(--text-main); }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-links a::after { display: none; }
+  .nav-links a.active { color: var(--gold); }
+}
+
+.quotes-strip { background: var(--wine); color: #fff; overflow: hidden; padding: 10px 0; }
+.quotes-track { display: flex; width: max-content; animation: scrollQuotes 45s linear infinite; }
+.quotes-track span { white-space: nowrap; padding: 0 30px; font-family: var(--font-accent-en); font-size: 13px; font-style: italic; opacity: 0.9; }
+.quotes-track i { font-style: normal; color: var(--gold); font-size: 10px; margin-left: 30px; }
+html[dir="rtl"] .quotes-track i { margin-left: 0; margin-right: 30px; }
+@keyframes scrollQuotes { to { transform: translateX(-50%); } }
+html[dir="rtl"] .quotes-track { animation-direction: reverse; }
+
+.hero { padding: 70px 0; text-align: center; }
+.hero h1 { font-size: clamp(34px, 8vw, 76px); margin-bottom: 22px; }
+.hero p { font-size: clamp(17px, 4vw, 21px); color: var(--text-muted); max-width: 60ch; margin: 0 auto; font-style: italic; }
+.hero .orn { color: var(--gold); font-size: 24px; margin-top: 26px; letter-spacing: 0.5em; }
+
+.section { padding: 60px 0; }
+.sec-head { border-bottom: 1px solid var(--line); padding-bottom: 15px; margin-bottom: 35px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; }
+.sec-head h2 { font-size: clamp(24px, 6vw, 42px); }
+.sec-head .aside { font-family: var(--font-accent-en); font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
+html[lang="ar"] .sec-head .aside { font-family: var(--font-body-ar); letter-spacing: normal; }
+.novels-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 22px; }
+
+/* Empty State */
+.empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; border: 1px dashed var(--line-strong); background: rgba(21, 27, 43, 0.4); }
+.empty-state .icon { font-size: 48px; color: var(--gold); margin-bottom: 18px; opacity: 0.7; }
+.empty-state h3 { font-size: 22px; margin-bottom: 10px; color: var(--text-main); }
+.empty-state p { color: var(--text-muted); font-style: italic; max-width: 46ch; margin: 0 auto; font-size: 15px; }
+
+.ideas-section { background: var(--bg-card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ideas-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+.ideas-form { background: var(--bg-paper); border: 1px solid var(--line-strong); padding: 24px; position: relative; }
+.ideas-form::after { content:'✦'; position: absolute; top: -15px; right: 30px; font-size: 28px; color: var(--gold); background: var(--bg-card); padding: 0 10px; }
+html[dir="rtl"] .ideas-form::after { right: auto; left: 30px; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-family: var(--font-accent-en); font-size: 12px; color: var(--gold); margin-bottom: 8px; letter-spacing: 0.1em; }
+html[lang="ar"] .form-group label { font-family: var(--font-body-ar); letter-spacing: normal; }
+.form-input, .form-textarea { width: 100%; background: var(--bg-deep); border: 1px solid var(--line); color: var(--text-main); padding: 13px; font-family: inherit; font-size: 16px; border-radius: 0; -webkit-appearance: none; }
+.form-input:focus, .form-textarea:focus { border-color: var(--gold); outline: none; }
+.form-textarea { min-height: 100px; resize: vertical; }
+.btn-primary { display: inline-block; background: var(--gold); color: var(--bg-deep); padding: 14px 28px; font-family: var(--font-accent-en); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: 0.3s var(--ease); border: none; cursor: pointer; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); }
+.ideas-wall { max-height: 500px; overflow-y: auto; padding-right: 8px; }
+html[dir="rtl"] .ideas-wall { padding-right: 0; padding-left: 8px; }
+.idea-note { background: var(--bg-deep); border-left: 3px solid var(--wine); padding: 18px; margin-bottom: 16px; font-style: italic; color: var(--text-muted); }
+html[dir="rtl"] .idea-note { border-left: none; border-right: 3px solid var(--wine); }
+.idea-note .author { display: block; margin-top: 10px; font-size: 11px; color: var(--gold); font-style: normal; font-family: var(--font-accent-en); }
+@media (max-width: 900px) { .ideas-layout { grid-template-columns: 1fr; gap: 30px; } }
+
+footer { background: #05080f; padding: 50px 0 30px; border-top: 3px solid var(--gold); margin-top: 60px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { color: var(--text-muted); margin-top: 15px; font-style: italic; font-size: 14px; }
+.footer-col h4 { font-family: var(--font-accent-en); color: var(--gold); font-size: 13px; letter-spacing: 0.15em; margin-bottom: 18px; text-transform: uppercase; }
+html[lang="ar"] .footer-col h4 { font-family: var(--font-body-ar); letter-spacing: normal; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { color: var(--text-muted); font-size: 14px; display: inline-block; padding: 4px 0; }
+.footer-col a:hover { color: var(--gold); }
+.copyright { text-align: center; padding-top: 26px; border-top: 1px solid var(--line); font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 28px; } }
+
+.toast { position: fixed; bottom: 26px; left: 50%; transform: translate(-50%, 120px); background: var(--gold); color: var(--bg-deep); padding: 13px 26px; font-family: var(--font-accent-en); font-weight: 700; letter-spacing: 0.08em; z-index: 1000; transition: transform 0.5s var(--ease); pointer-events: none; width: max-content; max-width: 90%; text-align: center; }
+.toast.show { transform: translate(-50%, 0); }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="toast" id="toast"></div>
+
+<div class="tg-hint" id="tgHint" hidden>
+  <span data-i18n="tgHint">You're using Telegram's internal browser. For the best experience tap ⋮ → "Open in browser".</span>
+  <button id="tgClose" aria-label="dismiss">✕</button>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a href="#/" class="brand">
+      <div class="logo-mark">MB</div>
+      <div class="brand-text">
+        <strong data-i18n="brandName">MB Novels</strong>
+        <em data-i18n="brandSub">Realms of Fantasy</em>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <button class="lang-btn" id="langToggle">العربية</button>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#/" data-r="home" data-i18n="navHome">Novels</a>
+      <a href="#/ideas" data-r="ideas" data-i18n="navIdeas">Reader Ideas</a>
+      <a href="#/about" data-r="about" data-i18n="navAbout">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="quotes-strip"><div class="quotes-track" id="quotesTrack"></div></div>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand"><div class="logo-mark">MB</div><div class="brand-text"><strong data-i18n="brandName">MB Novels</strong></div></div>
+        <p data-i18n="footerDesc">Crafting worlds where magic breathes and legends never truly die.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerLibrary">The Library</h4>
+        <ul>
+          <li><a href="#/" data-i18n="secMine">My Novels</a></li>
+          <li><a href="#/" data-i18n="secFeatured">Featured</a></li>
+          <li><a href="#/" data-i18n="secSoon">Coming Soon</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footerExplore">Explore</h4>
+        <ul>
+          <li><a href="#/ideas" data-i18n="navIdeas">Reader Ideas</a></li>
+          <li><a href="#/about" data-i18n="navAbout">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">&copy; 2026 MB Novels. All realms reserved.</div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    brandName: "MB Novels", brandSub: "Realms of Fantasy", navHome: "Novels", navIdeas: "Reader Ideas", navAbout: "About",
+    heroTitle: "Where Magic Breathes",
+    heroSub: "A new library is being built, chapter by chapter. The shelves are empty for now — but not for long. New worlds are coming soon.",
+    secMine: "My Novels", secFeatured: "Featured Novels", secSoon: "Coming Soon",
+    secIdeasTitle: "The Whispering Wall", secIdeasDesc: "Share your sparks of imagination. Write freely — no rules, just dreams.",
+    formName: "Your Name / Alias", formIdea: "Your Vision...", formBtn: "Cast Your Idea ✦",
+    footerDesc: "Crafting worlds where magic breathes and legends never truly die.", footerLibrary: "The Library", footerExplore: "Explore",
+    toastSuccess: "Your vision has been added ✦",
+    tgHint: "You're using Telegram's internal browser. For the best experience tap ⋮ → \"Open in browser\".",
+    emptyMineTitle: "The ink is still drying",
+    emptyMineText: "My novels will appear here soon. Each world is being written with care — stay tuned for the first chapter.",
+    emptyFeaturedTitle: "The featured shelf awaits",
+    emptyFeaturedText: "Hand-picked tales will be displayed here. Check back soon for stories worth losing yourself in.",
+    emptySoonTitle: "Something magical is brewing",
+    emptySoonText: "New releases are on the horizon. When the time comes, you'll be the first to know.",
+    aboutP1: "We craft worlds where magic breathes, legends live, and adventures never end.",
+    aboutP2: "This site is my library, my workshop, and my letterbox. Read, comment, and share your ideas — because the best stories are built together.",
+    quotes: [
+      "“It does not do to dwell on dreams and forget to live.” — J.K. Rowling",
+      "“Fantasy is hardly an escape from reality. It's a way of understanding it.” — Lloyd Alexander",
+      "“A reader lives a thousand lives before he dies.” — George R.R. Martin",
+      "“Magic is the art of turning invisible forces into visible ones.” — Aleister Crowley",
+      "“Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten.” — Neil Gaiman"
+    ]
+  },
+  ar: {
+    brandName: "روايات MB", brandSub: "عوالم الفانتازيا", navHome: "الروايات", navIdeas: "أفكار القراء", navAbout: "عن الموقع",
+    heroTitle: "حيث يتنفس السحر",
+    heroSub: "مكتبة جديدة تُبنى فصلاً فصلاً. الرفوف فارغة الآن — لكن ليس لوقت طويل. عوالم جديدة في الطريق قريباً.",
+    secMine: "رواياتي", secFeatured: "روايات مميزة", secSoon: "قادم قريبًا",
+    secIdeasTitle: "جدار الهمسات", secIdeasDesc: "شارك شرارات خيالك. اكتب بحرية — لا قواعد، فقط أحلام.",
+    formName: "اسمك / لقبك", formIdea: "رؤيتك...", formBtn: "ألقِ بفكرتك ✦",
+    footerDesc: "نصنع عوالم حيث يتنفس السحر ولا تموت الأساطير أبدًا.", footerLibrary: "المكتبة", footerExplore: "استكشف",
+    toastSuccess: "تمت إضافة رؤيتك ✦",
+    tgHint: "أنت تستخدم متصفح تيليجرام الداخلي. لأفضل تجربة اضغط ⋮ ثم «فتح في المتصفح».",
+    emptyMineTitle: "الحبر لا يزال يجف",
+    emptyMineText: "ستظهر رواياتي هنا قريباً. كل عالم يُكتب بعناية — ترقّبوا الفصل الأول.",
+    emptyFeaturedTitle: "رف المميزات ينتظر",
+    emptyFeaturedText: "حكايات منتقاة بعناية ستُعرض هنا. عد قريباً لقصص تستحق أن تغوص فيها.",
+    emptySoonTitle: "شيء سحري يُحضّر",
+    emptySoonText: "إصدارات جديدة في الأفق. عندما يحين الوقت، ستكون أول من يعلم.",
+    aboutP1: "نحن نصنع عوالم حيث يتنفس السحر، وتعيش الأساطير، ولا تنتهي المغامرات أبدًا.",
+    aboutP2: "هذا الموقع هو مكتبتنا، ورشتنا، وصندوق رسائلنا. اقرأ، علّق، وشاركنا أفكارك — لأن أفضل القصص تُبنى معًا.",
+    quotes: [
+      "«لا يصح أن نغرق في الأحلام وننسى أن نحيا.» — ج. ك. رولينغ",
+      "«الفانتازيا ليست هروبًا من الواقع، بل طريقة لفهمه.» — لويد ألكسندر",
+      "«القارئ يعيش ألف حياة قبل أن يموت.» — جورج ر. ر. مارتن",
+      "«السحر هو فن تحويل القوى غير المرئية إلى مرئية.» — أليستر كراولي",
+      "«الحكايات الخرافية حقيقية ليس لأنها تخبرنا بوجود التنانين، بل لأنه يمكن هزيمتها.» — نيل جايمان"
+    ]
+  }
+};
+
+let currentLang = localStorage.getItem('mb_lang') || 'en';
+let userIdeas = JSON.parse(localStorage.getItem('mb_ideas') || '[]');
+
+const $ = (s,r=document) => r.querySelector(s);
+const $$ = (s,r=document) => [...r.querySelectorAll(s)];
+const app = $('#app');
+const t = (key) => T[currentLang][key] || key;
+
+function showToast(msg) {
+  const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+function initReveals() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { $$('.rv').forEach(el => el.classList.add('on')); return; }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }});
+  }, { threshold: 0.1 });
+  $$('.rv').forEach(el => io.observe(el));
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('mb_lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  $('#langToggle').textContent = lang === 'ar' ? 'English' : 'العربية';
+  $$('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (T[lang][key]) el.textContent = T[lang][key]; });
+  renderQuotes(); route();
+}
+
+function renderQuotes() {
+  const quotes = T[currentLang].quotes;
+  $('#quotesTrack').innerHTML = [...quotes, ...quotes].map(q => `<span>${q} <i>✦</i></span>`).join('');
+}
+
+$('#langToggle').addEventListener('click', () => setLang(currentLang === 'en' ? 'ar' : 'en'));
+
+if (/Telegram/i.test(navigator.userAgent) && !sessionStorage.getItem('mb_tg_hint')) $('#tgHint').hidden = false;
+$('#tgClose').addEventListener('click', () => { $('#tgHint').hidden = true; sessionStorage.setItem('mb_tg_hint', '1'); });
+
+/* ================= EMPTY STATE HELPER ================= */
+function emptyState(icon, titleKey, textKey) {
+  return `
+    <div class="empty-state rv">
+      <div class="icon">${icon}</div>
+      <h3>${t(titleKey)}</h3>
+      <p>${t(textKey)}</p>
+    </div>`;
+}
+
+/* ================= VIEWS ================= */
+function homeView() {
+  setActive('home');
+  app.innerHTML = `
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow rv">${t('brandSub')}</span>
+        <h1 class="rv" style="--i:1">${t('heroTitle')}</h1>
+        <p class="rv" style="--i:2">${t('heroSub')}</p>
+        <div class="orn rv" style="--i:3">✦ ❦ </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2>${t('secMine')} <span style="color:var(--wine)">❦</span></h2>
+          <span class="aside">0 ${currentLang==='ar'?'روايات':'novels'}</span>
+        </div>
+        <div class="novels-grid">
+          ${emptyState('🖋️', 'emptyMineTitle', 'emptyMineText')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2>${t('secFeatured')} <span style="color:var(--wine)">✦</span></h2>
+          <span class="aside">0 ${currentLang==='ar'?'روايات':'novels'}</span>
+        </div>
+        <div class="novels-grid">
+          ${emptyState('⭐', 'emptyFeaturedTitle', 'emptyFeaturedText')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <h2>${t('secSoon')} <span style="color:var(--wine)">✦</span></h2>
+          <span class="aside">0 ${currentLang==='ar'?'روايات':'novels'}</span>
+        </div>
+        <div class="novels-grid">
+          ${emptyState('🔮', 'emptySoonTitle', 'emptySoonText')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section ideas-section">
+      <div class="wrap">
+        <div class="sec-head rv"><h2>${t('secIdeasTitle')} <span style="color:var(--wine)">✦</span></h2></div>
+        <div class="ideas-layout">
+          <div class="rv">
+            <p style="color:var(--text-muted); margin-bottom:26px; font-style:italic;">${t('secIdeasDesc')}</p>
+            <form class="ideas-form" onsubmit="return submitIdea(event)">
+              <div class="form-group"><label>${t('formName')}</label><input type="text" class="form-input" id="ideaName" required maxlength="30"></div>
+              <div class="form-group"><label>${t('formIdea')}</label><textarea class="form-textarea" id="ideaText" required maxlength="300"></textarea></div>
+              <button type="submit" class="btn-primary" style="width:100%;">${t('formBtn')}</button>
+            </form>
+          </div>
+          <div class="ideas-wall rv" style="--i:1">
+            ${[...userIdeas].reverse().length === 0
+              ? `<div style="text-align:center; padding:40px; color:var(--text-muted); font-style:italic;">${currentLang==='ar'?'كن أول من يشارك رؤية...':'Be the first to share a vision...'}</div>`
+              : [...userIdeas].reverse().map(idea => `<div class="idea-note">"${idea.text}"<span class="author">— ${idea.name}</span></div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </section>`;
+}
+
+window.submitIdea = (e) => {
+  e.preventDefault();
+  const name = $('#ideaName').value.trim(), text = $('#ideaText').value.trim();
+  if(!name || !text) return false;
+  userIdeas.push({ name, text, date: Date.now() });
+  localStorage.setItem('mb_ideas', JSON.stringify(userIdeas));
+  showToast(t('toastSuccess'));
+  homeView(); initReveals();
+  return false;
+};
+
+function aboutView() {
+  setActive('about');
+  app.innerHTML = `
+    <section class="section">
+      <div class="wrap" style="max-width:800px; text-align:center;">
+        <span class="eyebrow rv">${t('navAbout')}</span>
+        <h1 class="rv" style="--i:1; font-size:clamp(30px,7vw,56px); margin-bottom:26px;">${t('brandName')}</h1>
+        <div class="rv" style="--i:2; color:var(--text-muted); line-height:1.9;">
+          <p style="margin-bottom:18px;">${t('aboutP1')}</p>
+          <p>${t('aboutP2')}</p>
+        </div>
+        <div class="rv" style="--i:3; margin-top:44px; padding:30px; border:1px solid var(--line-strong); background:var(--bg-card);">
+          <div class="logo-mark" style="width:70px; height:70px; font-size:26px; margin:0 auto 18px;">MB</div>
+          <p style="font-family:var(--font-accent-en); color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; font-size:12px;">Est. 2026 · Fantasy Serial Fiction</p>
+        </div>
+      </div>
+    </section>`;
+}
+
+function setActive(r) { $$('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.r === r)); }
+
+function route() {
+  closeMenu();
+  const hash = location.hash || '#/';
+  const parts = hash.replace('#/','').split('/');
+  if(parts[0] === 'ideas') { /* ideas now on home */ location.hash = '#/'; return; }
+  else if(parts[0] === 'about') aboutView();
+  else homeView();
+  initReveals(); window.scrollTo(0,0);
+}
+
+function closeMenu() {
+  document.body.classList.remove('menu-open');
+  $('#burger').textContent = '☰';
+}
+
+window.addEventListener('hashchange', route);
+$('#burger').addEventListener('click', (e) => {
+  e.stopPropagation();
+  document.body.classList.toggle('menu-open');
+  $('#burger').textContent = document.body.classList.contains('menu-open') ? '✕' : '☰';
+});
+$$('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('click', (e) => {
+  if (document.body.classList.contains('menu-open') && !e.target.closest('.nav-links') && !e.target.closest('#burger')) closeMenu();
+});
+
+setLang(currentLang);
+route();
+</script>
+</body>
+</html>
