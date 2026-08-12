@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b0f19">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f6e7ad'/%3E%3Cstop offset='45%25' stop-color='%23d4af37'/%3E%3Cstop offset='100%25' stop-color='%238a7020'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' fill='%230b0f19'/%3E%3Cpolygon points='60,4 116,34 116,86 60,116 4,86 4,34' fill='rgba(212,175,55,0.06)' stroke='url(%23g)' stroke-width='4'/%3E%3Ctext x='60' y='75' text-anchor='middle' font-family='Georgia, serif' font-weight='800' font-size='50' letter-spacing='-5' fill='url(%23g)'%3EMB%3C/text%3E%3Cpath d='M37 89 Q60 103 83 89' fill='none' stroke='url(%23g)' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>MB Novels | Fantasy Worlds</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,8 +48,9 @@ html[dir="rtl"] .tg-hint button { margin-left: 0; margin-right: 12px; }
 .site-head { position: sticky; top: 0; z-index: 100; background: rgba(11, 15, 25, 0.97); border-bottom: 1px solid var(--line); }
 .site-head .wrap { display: flex; align-items: center; justify-content: space-between; height: 70px; }
 .brand { display: flex; align-items: center; }
-.logo-mark { width: 44px; height: 44px; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-display-en); font-weight: 800; font-size: 17px; color: var(--gold); background: rgba(212, 175, 55, 0.05); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); flex-shrink: 0; transition: 0.4s var(--ease); }
-.brand:hover .logo-mark { background: var(--gold); color: var(--bg-deep); transform: rotate(10deg); }
+.logo-mark { width: 44px; height: 44px; flex-shrink: 0; }
+.logo-mark svg { width: 100%; height: 100%; display: block; transition: transform 0.4s var(--ease), filter 0.4s var(--ease); }
+.brand:hover .logo-mark svg { transform: rotate(8deg) scale(1.06); filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.55)); }
 .brand-text { margin-left: 12px; }
 html[dir="rtl"] .brand-text { margin-left: 0; margin-right: 12px; }
 .brand-text strong { font-size: 19px; display: block; letter-spacing: 0.04em; color: var(--text-main); }
@@ -75,31 +77,58 @@ html[dir="rtl"] .nav-links a { margin-left: 0; margin-right: 26px; }
   .nav-links a.active { color: var(--gold); }
 }
 
+/* الشريط الأحمر - إصلاح للعربية */
 .quotes-strip { background: var(--wine); color: #fff; overflow: hidden; padding: 10px 0; }
 .quotes-track { display: flex; width: max-content; animation: scrollQuotes 45s linear infinite; }
 .quotes-track span { white-space: nowrap; padding: 0 30px; font-family: var(--font-accent-en); font-size: 13px; font-style: italic; opacity: 0.9; }
+html[lang="ar"] .quotes-track span { font-family: var(--font-body-ar); font-style: normal; font-size: 15px; letter-spacing: normal; }
 .quotes-track i { font-style: normal; color: var(--gold); font-size: 10px; margin-left: 30px; }
 html[dir="rtl"] .quotes-track i { margin-left: 0; margin-right: 30px; }
 @keyframes scrollQuotes { to { transform: translateX(-50%); } }
 html[dir="rtl"] .quotes-track { animation-direction: reverse; }
 
-.hero { padding: 70px 0; text-align: center; }
-.hero h1 { font-size: clamp(34px, 8vw, 76px); margin-bottom: 22px; }
-.hero p { font-size: clamp(17px, 4vw, 21px); color: var(--text-muted); max-width: 60ch; margin: 0 auto; font-style: italic; }
-.hero .orn { color: var(--gold); font-size: 24px; margin-top: 26px; letter-spacing: 0.5em; }
+.hero { padding: 80px 0 60px; text-align: center; position: relative; }
+.hero h1 { font-size: clamp(34px, 8vw, 76px); margin-bottom: 18px; position: relative; z-index: 3; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+.hero p { font-size: clamp(17px, 4vw, 21px); color: #e0e6ed; max-width: 60ch; margin: 0 auto 26px; font-style: italic; position: relative; z-index: 3; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+.hero .orn { color: var(--gold); font-size: 24px; letter-spacing: 0.5em; position: relative; z-index: 3; }
+
+/* خلفية الصور المتغيرة - إصلاح z-index */
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.hero-bg img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.hero-bg img.active { opacity: 1; }
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(11,15,25,0.75), rgba(11,15,25,0.5), rgba(11,15,25,0.9));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* التأكد أن المحتوى فوق الخلفية */
+.hero .wrap {
+  position: relative;
+  z-index: 3;
+}
 
 .section { padding: 60px 0; }
 .sec-head { border-bottom: 1px solid var(--line); padding-bottom: 15px; margin-bottom: 35px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; }
 .sec-head h2 { font-size: clamp(24px, 6vw, 42px); }
 .sec-head .aside { font-family: var(--font-accent-en); font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
 html[lang="ar"] .sec-head .aside { font-family: var(--font-body-ar); letter-spacing: normal; }
-.novels-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 22px; }
-
-/* Empty State */
-.empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; border: 1px dashed var(--line-strong); background: rgba(21, 27, 43, 0.4); }
-.empty-state .icon { font-size: 48px; color: var(--gold); margin-bottom: 18px; opacity: 0.7; }
-.empty-state h3 { font-size: 22px; margin-bottom: 10px; color: var(--text-main); }
-.empty-state p { color: var(--text-muted); font-style: italic; max-width: 46ch; margin: 0 auto; font-size: 15px; }
 
 .ideas-section { background: var(--bg-card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .ideas-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
@@ -120,6 +149,65 @@ html[dir="rtl"] .ideas-wall { padding-right: 0; padding-left: 8px; }
 html[dir="rtl"] .idea-note { border-left: none; border-right: 3px solid var(--wine); }
 .idea-note .author { display: block; margin-top: 10px; font-size: 11px; color: var(--gold); font-style: normal; font-family: var(--font-accent-en); }
 @media (max-width: 900px) { .ideas-layout { grid-template-columns: 1fr; gap: 30px; } }
+
+/* أقسام الروايات */
+.novels-section-title {
+  font-size: clamp(22px, 5vw, 36px);
+  margin: 40px 0 20px;
+  color: var(--gold);
+}
+
+.novels-carousel {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 4px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+html[dir="rtl"] .novels-carousel {
+  direction: rtl;
+}
+.novel-card {
+  flex: 0 0 260px;
+  max-width: 260px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.novel-card img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+}
+.novel-card h3 {
+  font-size: 18px;
+  padding: 14px 14px 6px;
+  margin: 0;
+}
+.novel-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  padding: 0 14px 16px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* حالة فارغة */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  border: 1px dashed var(--line-strong);
+  background: rgba(21, 27, 43, 0.4);
+  border-radius: 10px;
+}
+.empty-state .icon { font-size: 48px; color: var(--gold); margin-bottom: 18px; opacity: 0.7; }
+.empty-state h3 { font-size: 22px; margin-bottom: 10px; color: var(--text-main); }
+.empty-state p { color: var(--text-muted); font-style: italic; max-width: 46ch; margin: 0 auto; font-size: 15px; }
 
 footer { background: #05080f; padding: 50px 0 30px; border-top: 3px solid var(--gold); margin-top: 60px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
@@ -143,27 +231,41 @@ html[lang="ar"] .footer-col h4 { font-family: var(--font-body-ar); letter-spacin
 <div class="toast" id="toast"></div>
 
 <div class="tg-hint" id="tgHint" hidden>
-  <span data-i18n="tgHint">You're using Telegram's internal browser. For the best experience tap ⋮ → "Open in browser".</span>
+  <span data-i18n="tgHint">أنت تستخدم متصفح تيليجرام الداخلي. لأفضل تجربة اضغط ⋮ ثم «فتح في المتصفح».</span>
   <button id="tgClose" aria-label="dismiss">✕</button>
 </div>
 
 <header class="site-head">
   <div class="wrap">
     <a href="#/" class="brand">
-      <div class="logo-mark">MB</div>
+      <div class="logo-mark">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MB Novels">
+          <defs>
+            <linearGradient id="mbGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f6e7ad"/>
+              <stop offset="45%" stop-color="#d4af37"/>
+              <stop offset="100%" stop-color="#8a7020"/>
+            </linearGradient>
+          </defs>
+          <polygon points="60,4 116,34 116,86 60,116 4,86 4,34" fill="rgba(212,175,55,0.06)" stroke="url(#mbGold)" stroke-width="3"/>
+          <text x="60" y="75" text-anchor="middle" font-family="'Cinzel', serif" font-weight="800" font-size="50" letter-spacing="-5" fill="url(#mbGold)">MB</text>
+          <path d="M37 89 Q60 103 83 89" fill="none" stroke="url(#mbGold)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="brand-text">
-        <strong data-i18n="brandName">MB Novels</strong>
-        <em data-i18n="brandSub">Realms of Fantasy</em>
+        <strong data-i18n="brandName">روايات MB</strong>
+        <em data-i18n="brandSub">عوالم الفانتازيا</em>
       </div>
     </a>
     <div class="nav-actions">
-      <button class="lang-btn" id="langToggle">العربية</button>
+      <button class="lang-btn" id="langToggle">English</button>
       <button class="burger" id="burger" aria-label="Menu">☰</button>
     </div>
     <nav class="nav-links" id="navLinks">
-      <a href="#/" data-r="home" data-i18n="navHome">Novels</a>
-      <a href="#/ideas" data-r="ideas" data-i18n="navIdeas">Reader Ideas</a>
-      <a href="#/about" data-r="about" data-i18n="navAbout">About</a>
+      <a href="#/" data-r="home" data-i18n="navHome">الرئيسية</a>
+      <a href="#/ideas" data-r="ideas" data-i18n="navIdeas">أفكار القراء</a>
+      <a href="#/novels" data-r="novels" data-i18n="navNovels">رواياتي</a>
+      <a href="#/about" data-r="about" data-i18n="navAbout">عن الموقع</a>
     </nav>
   </div>
 </header>
@@ -176,22 +278,33 @@ html[lang="ar"] .footer-col h4 { font-family: var(--font-body-ar); letter-spacin
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="brand"><div class="logo-mark">MB</div><div class="brand-text"><strong data-i18n="brandName">MB Novels</strong></div></div>
-        <p data-i18n="footerDesc">Crafting worlds where magic breathes and legends never truly die.</p>
+        <div class="brand"><div class="logo-mark">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MB Novels">
+            <defs>
+              <linearGradient id="mbGoldFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f6e7ad"/>
+                <stop offset="45%" stop-color="#d4af37"/>
+                <stop offset="100%" stop-color="#8a7020"/>
+              </linearGradient>
+            </defs>
+            <polygon points="60,4 116,34 116,86 60,116 4,86 4,34" fill="rgba(212,175,55,0.06)" stroke="url(#mbGoldFooter)" stroke-width="3"/>
+            <text x="60" y="75" text-anchor="middle" font-family="'Cinzel', serif" font-weight="800" font-size="50" letter-spacing="-5" fill="url(#mbGoldFooter)">MB</text>
+            <path d="M37 89 Q60 103 83 89" fill="none" stroke="url(#mbGoldFooter)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div><div class="brand-text"><strong data-i18n="brandName">روايات MB</strong></div></div>
+        <p data-i18n="footerDesc">نصنع عوالم حيث يتنفس السحر ولا تموت الأساطير أبدًا.</p>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footerLibrary">The Library</h4>
+        <h4 data-i18n="footerLibrary">المكتبة</h4>
         <ul>
-          <li><a href="#/" data-i18n="secMine">My Novels</a></li>
-          <li><a href="#/" data-i18n="secFeatured">Featured</a></li>
-          <li><a href="#/" data-i18n="secSoon">Coming Soon</a></li>
+          <li><a href="#/novels" data-i18n="navNovels">رواياتي</a></li>
+          <li><a href="#/ideas" data-i18n="navIdeas">أفكار القراء</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footerExplore">Explore</h4>
+        <h4 data-i18n="footerExplore">استكشف</h4>
         <ul>
-          <li><a href="#/ideas" data-i18n="navIdeas">Reader Ideas</a></li>
-          <li><a href="#/about" data-i18n="navAbout">About</a></li>
+          <li><a href="#/about" data-i18n="navAbout">عن الموقع</a></li>
         </ul>
       </div>
     </div>
@@ -202,61 +315,77 @@ html[lang="ar"] .footer-col h4 { font-family: var(--font-body-ar); letter-spacin
 <script>
 const T = {
   en: {
-    brandName: "MB Novels", brandSub: "Realms of Fantasy", navHome: "Novels", navIdeas: "Reader Ideas", navAbout: "About",
+    brandName: "MB Novels", brandSub: "Realms of Fantasy",
+    navHome: "Home", navIdeas: "Reader Ideas", navNovels: "My Novels", navAbout: "About",
     heroTitle: "Where Magic Breathes",
     heroSub: "A new library is being built, chapter by chapter. The shelves are empty for now — but not for long. New worlds are coming soon.",
-    secMine: "My Novels", secFeatured: "Featured Novels", secSoon: "Coming Soon",
     secIdeasTitle: "The Whispering Wall", secIdeasDesc: "Share your sparks of imagination. Write freely — no rules, just dreams.",
     formName: "Your Name / Alias", formIdea: "Your Vision...", formBtn: "Cast Your Idea ✦",
     footerDesc: "Crafting worlds where magic breathes and legends never truly die.", footerLibrary: "The Library", footerExplore: "Explore",
     toastSuccess: "Your vision has been added ✦",
     tgHint: "You're using Telegram's internal browser. For the best experience tap ⋮ → \"Open in browser\".",
-    emptyMineTitle: "The ink is still drying",
-    emptyMineText: "My novels will appear here soon. Each world is being written with care — stay tuned for the first chapter.",
-    emptyFeaturedTitle: "The featured shelf awaits",
-    emptyFeaturedText: "Hand-picked tales will be displayed here. Check back soon for stories worth losing yourself in.",
-    emptySoonTitle: "Something magical is brewing",
-    emptySoonText: "New releases are on the horizon. When the time comes, you'll be the first to know.",
     aboutP1: "We craft worlds where magic breathes, legends live, and adventures never end.",
     aboutP2: "This site is my library, my workshop, and my letterbox. Read, comment, and share your ideas — because the best stories are built together.",
+    emptyNovelsTitle: "The ink is still drying",
+    emptyNovelsText: "My novels will appear here soon. Each world is being written with care — stay tuned for the first chapter.",
+    emptyOthersTitle: "Other realms await",
+    emptyOthersText: "More tales from distant worlds will be added here. Check back soon.",
+    emptySoonTitle: "Something magical is brewing",
+    emptySoonText: "New releases are on the horizon. When the time comes, you'll be the first to know.",
     quotes: [
       "“It does not do to dwell on dreams and forget to live.” — J.K. Rowling",
       "“Fantasy is hardly an escape from reality. It's a way of understanding it.” — Lloyd Alexander",
       "“A reader lives a thousand lives before he dies.” — George R.R. Martin",
       "“Magic is the art of turning invisible forces into visible ones.” — Aleister Crowley",
       "“Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten.” — Neil Gaiman"
+    ],
+    heroImages: [
+      "https://imgs.search.brave.com/U3qi6roIplOsq8j4jTzd_lAGKbdgPYEVLf_EWT24Fjo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdDUu/ZGVwb3NpdHBob3Rv/cy5jb20vODgzNjky/MjgvNzM3NjcvaS80/NTAvZGVwb3NpdHBo/b3Rvc183Mzc2NzE5/MzQtc3RvY2stcGhv/dG8tZmFudGFzeS1j/YXN0bGUtZm9yZXN0/LWdyZWVuLXRyZWVz/LmpwZw",
+      "https://imgs.search.brave.com/WSXVYr2btGod7QF_YO8Y7g4OlwqRdGXx_8nB05c1wdU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcGhv/dG8vZmFudGFzeS1s/YW5kc2NhcGUtd2l0/aC13YXRlci1zcGls/bHMtbW91bnRhaW5z/LWRhcmstY29sb3Jz/Xzg4MTM1LTM4MDU2/LmpwZz9nYT1HQTEu/MS4yMTI1OTA4MjA2/LjE3ODUwMDkzNTAm/c2VtdD1haXNfaHli/cmlkJnc9NzQwJnE9/ODA",
+      "https://imgs.search.brave.com/FrCLMdtQe0uIxKqeMj-ELFBxaXDsXKmEGDInb0Jjxjk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcGhv/dG8vZmFudGFzeS13/YWxscGFwZXJfNjY1/MjgwLTY4MTQ4Lmpw/Zz9nYT1HQTEuMS4y/MTI1OTA4MjA2LjE3/ODUwMDkzNTAmc2Vt/dD1haXNfaHlicmlk/Jnc9NzQwJnE9ODA"
     ]
   },
   ar: {
-    brandName: "روايات MB", brandSub: "عوالم الفانتازيا", navHome: "الروايات", navIdeas: "أفكار القراء", navAbout: "عن الموقع",
+    brandName: "روايات MB", brandSub: "عوالم الفانتازيا",
+    navHome: "الرئيسية", navIdeas: "أفكار القراء", navNovels: "رواياتي", navAbout: "عن الموقع",
     heroTitle: "حيث يتنفس السحر",
     heroSub: "مكتبة جديدة تُبنى فصلاً فصلاً. الرفوف فارغة الآن — لكن ليس لوقت طويل. عوالم جديدة في الطريق قريباً.",
-    secMine: "رواياتي", secFeatured: "روايات مميزة", secSoon: "قادم قريبًا",
     secIdeasTitle: "جدار الهمسات", secIdeasDesc: "شارك شرارات خيالك. اكتب بحرية — لا قواعد، فقط أحلام.",
     formName: "اسمك / لقبك", formIdea: "رؤيتك...", formBtn: "ألقِ بفكرتك ✦",
     footerDesc: "نصنع عوالم حيث يتنفس السحر ولا تموت الأساطير أبدًا.", footerLibrary: "المكتبة", footerExplore: "استكشف",
     toastSuccess: "تمت إضافة رؤيتك ✦",
     tgHint: "أنت تستخدم متصفح تيليجرام الداخلي. لأفضل تجربة اضغط ⋮ ثم «فتح في المتصفح».",
-    emptyMineTitle: "الحبر لا يزال يجف",
-    emptyMineText: "ستظهر رواياتي هنا قريباً. كل عالم يُكتب بعناية — ترقّبوا الفصل الأول.",
-    emptyFeaturedTitle: "رف المميزات ينتظر",
-    emptyFeaturedText: "حكايات منتقاة بعناية ستُعرض هنا. عد قريباً لقصص تستحق أن تغوص فيها.",
-    emptySoonTitle: "شيء سحري يُحضّر",
-    emptySoonText: "إصدارات جديدة في الأفق. عندما يحين الوقت، ستكون أول من يعلم.",
     aboutP1: "نحن نصنع عوالم حيث يتنفس السحر، وتعيش الأساطير، ولا تنتهي المغامرات أبدًا.",
     aboutP2: "هذا الموقع هو مكتبتنا، ورشتنا، وصندوق رسائلنا. اقرأ، علّق، وشاركنا أفكارك — لأن أفضل القصص تُبنى معًا.",
+    emptyNovelsTitle: "الحبر لا يزال يجف",
+    emptyNovelsText: "ستظهر رواياتي هنا قريباً. كل عالم يُكتب بعناية — ترقّبوا الفصل الأول.",
+    emptyOthersTitle: "عوالم أخرى بانتظارك",
+    emptyOthersText: "حكايات إضافية من عوالم بعيدة ستُضاف هنا. عد قريبًا.",
+    emptySoonTitle: "شيء سحري يُحضّر",
+    emptySoonText: "إصدارات جديدة في الأفق. عندما يحين الوقت، ستكون أول من يعلم.",
     quotes: [
       "«لا يصح أن نغرق في الأحلام وننسى أن نحيا.» — ج. ك. رولينغ",
       "«الفانتازيا ليست هروبًا من الواقع، بل طريقة لفهمه.» — لويد ألكسندر",
       "«القارئ يعيش ألف حياة قبل أن يموت.» — جورج ر. ر. مارتن",
       "«السحر هو فن تحويل القوى غير المرئية إلى مرئية.» — أليستر كراولي",
       "«الحكايات الخرافية حقيقية ليس لأنها تخبرنا بوجود التنانين، بل لأنه يمكن هزيمتها.» — نيل جايمان"
+    ],
+    heroImages: [
+      "https://imgs.search.brave.com/U3qi6roIplOsq8j4jTzd_lAGKbdgPYEVLf_EWT24Fjo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdDUu/ZGVwb3NpdHBob3Rv/cy5jb20vODgzNjky/MjgvNzM3NjcvaS80/NTAvZGVwb3NpdHBo/b3Rvc183Mzc2NzE5/MzQtc3RvY2stcGhv/dG8tZmFudGFzeS1j/YXN0bGUtZm9yZXN0/LWdyZWVuLXRyZWVz/LmpwZw",
+      "https://imgs.search.brave.com/WSXVYr2btGod7QF_YO8Y7g4OlwqRdGXx_8nB05c1wdU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcGhv/dG8vZmFudGFzeS1s/YW5kc2NhcGUtd2l0/aC13YXRlci1zcGls/bHMtbW91bnRhaW5z/LWRhcmstY29sb3Jz/Xzg4MTM1LTM4MDU2/LmpwZz9nYT1HQTEu/MS4yMTI1OTA4MjA2/LjE3ODUwMDkzNTAm/c2VtdD1haXNfaHli/cmlkJnc9NzQwJnE9/ODA",
+      "https://imgs.search.brave.com/FrCLMdtQe0uIxKqeMj-ELFBxaXDsXKmEGDInb0Jjxjk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/bWFnbmlmaWMuY29t/L3ByZW1pdW0tcGhv/dG8vZmFudGFzeS13/YWxscGFwZXJfNjY1/MjgwLTY4MTQ4Lmpw/Zz9nYT1HQTEuMS4y/MTI1OTA4MjA2LjE3/ODUwMDkzNTAmc2Vt/dD1haXNfaHlicmlk/Jnc9NzQwJnE9ODA"
     ]
   }
 };
 
-let currentLang = localStorage.getItem('mb_lang') || 'en';
-let userIdeas = JSON.parse(localStorage.getItem('mb_ideas') || '[]');
+let currentLang = localStorage.getItem('mb_lang') || 'ar';
+let userIdeas = [];
+try {
+  userIdeas = JSON.parse(localStorage.getItem('mb_ideas') || '[]');
+} catch (e) {
+  userIdeas = [];
+  localStorage.removeItem('mb_ideas');
+}
 
 const $ = (s,r=document) => r.querySelector(s);
 const $$ = (s,r=document) => [...r.querySelectorAll(s)];
@@ -264,7 +393,8 @@ const app = $('#app');
 const t = (key) => T[currentLang][key] || key;
 
 function showToast(msg) {
-  const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+  const el = $('#toast'); if(!el) return;
+  el.textContent = msg; el.classList.add('show');
   setTimeout(() => el.classList.remove('show'), 3000);
 }
 
@@ -281,22 +411,26 @@ function setLang(lang) {
   localStorage.setItem('mb_lang', lang);
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  $('#langToggle').textContent = lang === 'ar' ? 'English' : 'العربية';
+  const langBtn = $('#langToggle');
+  if(langBtn) langBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
   $$('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (T[lang][key]) el.textContent = T[lang][key]; });
   renderQuotes(); route();
 }
 
 function renderQuotes() {
+  const track = $('#quotesTrack'); if(!track) return;
   const quotes = T[currentLang].quotes;
-  $('#quotesTrack').innerHTML = [...quotes, ...quotes].map(q => `<span>${q} <i>✦</i></span>`).join('');
+  track.innerHTML = [...quotes, ...quotes].map(q => `<span>${q} <i>✦</i></span>`).join('');
 }
 
-$('#langToggle').addEventListener('click', () => setLang(currentLang === 'en' ? 'ar' : 'en'));
+const langToggle = $('#langToggle');
+if(langToggle) langToggle.addEventListener('click', () => setLang(currentLang === 'en' ? 'ar' : 'en'));
 
-if (/Telegram/i.test(navigator.userAgent) && !sessionStorage.getItem('mb_tg_hint')) $('#tgHint').hidden = false;
-$('#tgClose').addEventListener('click', () => { $('#tgHint').hidden = true; sessionStorage.setItem('mb_tg_hint', '1'); });
+const tgHint = $('#tgHint');
+const tgClose = $('#tgClose');
+if (/Telegram/i.test(navigator.userAgent) && !sessionStorage.getItem('mb_tg_hint') && tgHint) tgHint.hidden = false;
+if(tgClose) tgClose.addEventListener('click', () => { if(tgHint) tgHint.hidden = true; sessionStorage.setItem('mb_tg_hint', '1'); });
 
-/* ================= EMPTY STATE HELPER ================= */
 function emptyState(icon, titleKey, textKey) {
   return `
     <div class="empty-state rv">
@@ -306,58 +440,54 @@ function emptyState(icon, titleKey, textKey) {
     </div>`;
 }
 
-/* ================= VIEWS ================= */
 function homeView() {
   setActive('home');
+  const images = T[currentLang].heroImages;
+  
   app.innerHTML = `
     <section class="hero">
       <div class="wrap">
+        <!-- خلفية الصور المتغيرة -->
+        <div class="hero-bg" id="heroBg">
+          ${images.map((src, i) => `<img src="${src}" alt="Fantasy background ${i+1}" class="${i===0?'active':''}" loading="lazy">`).join('')}
+        </div>
+        
         <span class="eyebrow rv">${t('brandSub')}</span>
         <h1 class="rv" style="--i:1">${t('heroTitle')}</h1>
         <p class="rv" style="--i:2">${t('heroSub')}</p>
         <div class="orn rv" style="--i:3">✦ ❦ </div>
       </div>
     </section>
+  `;
+  
+  // تبديل الصور كل 4 ثوانٍ
+  startHeroSlider();
+}
 
+function startHeroSlider() {
+  const bg = $('#heroBg');
+  if(!bg) return;
+  
+  const imgs = $$('img', bg);
+  if(imgs.length <= 1) return;
+  
+  let current = 0;
+  setInterval(() => {
+    imgs[current].classList.remove('active');
+    current = (current + 1) % imgs.length;
+    imgs[current].classList.add('active');
+  }, 4000); // كل 4 ثوانٍ
+}
+
+function ideasView() {
+  setActive('ideas');
+  app.innerHTML = `
     <section class="section">
       <div class="wrap">
         <div class="sec-head rv">
-          <h2>${t('secMine')} <span style="color:var(--wine)">❦</span></h2>
-          <span class="aside">0 ${currentLang==='ar'?'روايات':'novels'}</span>
+          <h2>${t('secIdeasTitle')} <span style="color:var(--wine)">✦</span></h2>
         </div>
-        <div class="novels-grid">
-          ${emptyState('🖋️', 'emptyMineTitle', 'emptyMineText')}
-        </div>
-      </div>
-    </section>
 
-    <section class="section" style="padding-top:0;">
-      <div class="wrap">
-        <div class="sec-head rv">
-          <h2>${t('secFeatured')} <span style="color:var(--wine)">✦</span></h2>
-          <span class="aside">0 ${currentLang==='ar'?'روايات':'novels'}</span>
-        </div>
-        <div class="novels-grid">
-          ${emptyState('⭐', 'emptyFeaturedTitle', 'emptyFeaturedText')}
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0;">
-      <div class="wrap">
-        <div class="sec-head rv">
-          <h2>${t('secSoon')} <span style="color:var(--wine)">✦</span></h2>
-          <span class="aside">0 ${currentLang==='ar'?'روايات':'novels'}</span>
-        </div>
-        <div class="novels-grid">
-          ${emptyState('🔮', 'emptySoonTitle', 'emptySoonText')}
-        </div>
-      </div>
-    </section>
-
-    <section class="section ideas-section">
-      <div class="wrap">
-        <div class="sec-head rv"><h2>${t('secIdeasTitle')} <span style="color:var(--wine)">✦</span></h2></div>
         <div class="ideas-layout">
           <div class="rv">
             <p style="color:var(--text-muted); margin-bottom:26px; font-style:italic;">${t('secIdeasDesc')}</p>
@@ -367,6 +497,7 @@ function homeView() {
               <button type="submit" class="btn-primary" style="width:100%;">${t('formBtn')}</button>
             </form>
           </div>
+
           <div class="ideas-wall rv" style="--i:1">
             ${[...userIdeas].reverse().length === 0
               ? `<div style="text-align:center; padding:40px; color:var(--text-muted); font-style:italic;">${currentLang==='ar'?'كن أول من يشارك رؤية...':'Be the first to share a vision...'}</div>`
@@ -374,19 +505,39 @@ function homeView() {
           </div>
         </div>
       </div>
-    </section>`;
+    </section>
+  `;
 }
 
-window.submitIdea = (e) => {
-  e.preventDefault();
-  const name = $('#ideaName').value.trim(), text = $('#ideaText').value.trim();
-  if(!name || !text) return false;
-  userIdeas.push({ name, text, date: Date.now() });
-  localStorage.setItem('mb_ideas', JSON.stringify(userIdeas));
-  showToast(t('toastSuccess'));
-  homeView(); initReveals();
-  return false;
-};
+function novelsView() {
+  setActive('novels');
+
+  app.innerHTML = `
+    <section class="section">
+      <div class="wrap">
+
+        <!-- رواياتي -->
+        <h2 class="novels-section-title rv" style="--i:0">${currentLang==='ar'?'رواياتي':'My Novels'}</h2>
+        <div class="novels-carousel rv" style="--i:1">
+          ${emptyState('🖋️', 'emptyNovelsTitle', 'emptyNovelsText')}
+        </div>
+
+        <!-- روايات أخرى -->
+        <h2 class="novels-section-title rv" style="--i:2">${currentLang==='ar'?'روايات أخرى':'Other Novels'}</h2>
+        <div class="novels-carousel rv" style="--i:3">
+          ${emptyState('📚', 'emptyOthersTitle', 'emptyOthersText')}
+        </div>
+
+        <!-- قادمة قريبًا -->
+        <h2 class="novels-section-title rv" style="--i:4">${currentLang==='ar'?'قادمة قريبًا':'Coming Soon'}</h2>
+        <div class="novels-carousel rv" style="--i:5">
+          ${emptyState('🔮', 'emptySoonTitle', 'emptySoonText')}
+        </div>
+
+      </div>
+    </section>
+  `;
+}
 
 function aboutView() {
   setActive('about');
@@ -400,37 +551,96 @@ function aboutView() {
           <p>${t('aboutP2')}</p>
         </div>
         <div class="rv" style="--i:3; margin-top:44px; padding:30px; border:1px solid var(--line-strong); background:var(--bg-card);">
-          <div class="logo-mark" style="width:70px; height:70px; font-size:26px; margin:0 auto 18px;">MB</div>
+          <div class="logo-mark" style="width:90px; height:90px; margin:0 auto 18px;">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MB Novels">
+              <defs>
+                <linearGradient id="mbGoldAbout" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f6e7ad"/>
+                  <stop offset="45%" stop-color="#d4af37"/>
+                  <stop offset="100%" stop-color="#8a7020"/>
+                </linearGradient>
+              </defs>
+              <polygon points="60,4 116,34 116,86 60,116 4,86 4,34" fill="rgba(212,175,55,0.06)" stroke="url(#mbGoldAbout)" stroke-width="3"/>
+              <text x="60" y="75" text-anchor="middle" font-family="'Cinzel', serif" font-weight="800" font-size="50" letter-spacing="-5" fill="url(#mbGoldAbout)">MB</text>
+              <path d="M37 89 Q60 103 83 89" fill="none" stroke="url(#mbGoldAbout)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
           <p style="font-family:var(--font-accent-en); color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; font-size:12px;">Est. 2026 · Fantasy Serial Fiction</p>
         </div>
       </div>
-    </section>`;
+    </section>
+  `;
 }
 
-function setActive(r) { $$('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.r === r)); }
+function setActive(r) {
+  $$('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.r === r));
+}
 
 function route() {
   closeMenu();
   const hash = location.hash || '#/';
   const parts = hash.replace('#/','').split('/');
-  if(parts[0] === 'ideas') { /* ideas now on home */ location.hash = '#/'; return; }
-  else if(parts[0] === 'about') aboutView();
-  else homeView();
-  initReveals(); window.scrollTo(0,0);
+
+  if(parts[0] === 'ideas') {
+    ideasView();
+  } else if(parts[0] === 'novels') {
+    novelsView();
+  } else if(parts[0] === 'about') {
+    aboutView();
+  } else {
+    homeView();
+  }
+
+  initReveals();
+  window.scrollTo(0,0);
 }
 
 function closeMenu() {
   document.body.classList.remove('menu-open');
-  $('#burger').textContent = '☰';
+  const burger = $('#burger');
+  if(burger) burger.textContent = '☰';
 }
 
+window.submitIdea = (e) => {
+  e.preventDefault();
+  const nameInput = $('#ideaName');
+  const textInput = $('#ideaText');
+  if(!nameInput || !textInput) return false;
+
+  const name = nameInput.value.trim();
+  const text = textInput.value.trim();
+  if(!name || !text) return false;
+
+  userIdeas.push({ name, text, date: Date.now() });
+  localStorage.setItem('mb_ideas', JSON.stringify(userIdeas));
+  showToast(t('toastSuccess'));
+
+  nameInput.value = '';
+  textInput.value = '';
+
+  const wall = document.querySelector('.ideas-wall');
+  if (wall) {
+    wall.innerHTML = [...userIdeas].reverse().map(idea =>
+      `<div class="idea-note">"${idea.text}"<span class="author">— ${idea.name}</span></div>`
+    ).join('');
+  }
+
+  return false;
+};
+
 window.addEventListener('hashchange', route);
-$('#burger').addEventListener('click', (e) => {
-  e.stopPropagation();
-  document.body.classList.toggle('menu-open');
-  $('#burger').textContent = document.body.classList.contains('menu-open') ? '✕' : '☰';
-});
+
+const burger = $('#burger');
+if(burger) {
+  burger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.body.classList.toggle('menu-open');
+    burger.textContent = document.body.classList.contains('menu-open') ? '✕' : '☰';
+  });
+}
+
 $$('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
+
 document.addEventListener('click', (e) => {
   if (document.body.classList.contains('menu-open') && !e.target.closest('.nav-links') && !e.target.closest('#burger')) closeMenu();
 });
