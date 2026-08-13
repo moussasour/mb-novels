@@ -241,43 +241,6 @@ html[dir="rtl"] .quotes-track {
   opacity:1;
 }
 
-.hero-slide-content {
-  position:relative;
-  z-index:1;
-  opacity:0;
-  transition:opacity .6s ease;
-  display:none;
-}
-
-.hero-slide-content.active {
-  display:block;
-  opacity:1;
-}
-
-.hero-dots {
-  position:relative;
-  z-index:2;
-  display:flex;
-  justify-content:center;
-  gap:9px;
-  margin-top:22px;
-}
-
-.hero-dot {
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  border:1px solid var(--gold);
-  background:transparent;
-  padding:0;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.hero-dot.active {
-  background:var(--gold);
-}
-
 .hero-box::after {
   content:"";
   position:absolute;
@@ -871,6 +834,7 @@ const T = {
     navNovels: "رواياتي",
     navAbout: "عن الموقع",
     heroTitle: "حيث يتنفس السحر",
+    heroEyebrow: "الكتابات القديمة",
     heroSub: "مكتبة جديدة تُبنى فصلًا بعد فصل. عوالم جديدة تنتظر من يكتشفها.",
     featuredTitle: "أعمال مختارة",
     secIdeasTitle: "جدار الهمسات",
@@ -910,6 +874,7 @@ const T = {
     navNovels: "My Novels",
     navAbout: "About",
     heroTitle: "Where Magic Breathes",
+    heroEyebrow: "Ancient Writings",
     heroSub: "A new library is being built, chapter by chapter. New worlds are waiting to be discovered.",
     featuredTitle: "Featured Works",
     secIdeasTitle: "The Whispering Wall",
@@ -1149,51 +1114,13 @@ function setLanguage(language) {
 /* الصفحة الرئيسية */
 let heroSlideInterval = null;
 
-function getHeroSlides() {
+function getHeroImages() {
   const story = shortStories["haris-al-saa-al-akhira"];
 
   return [
-    {
-      link: "#/novel/linguistic-fantasy",
-      image: linguisticFantasyImage,
-      alt: "Linguistic Fantasy",
-      eyebrow: t("brandSub"),
-      title: t("heroTitle"),
-      text: t("heroSub")
-    },
-    {
-      link: "#/story/haris-al-saa-al-akhira",
-      image: story.image,
-      alt: story.titleEn,
-      eyebrow: t("storiesTitle"),
-      title: currentLang === "ar" ? story.titleAr : story.titleEn,
-      text: currentLang === "ar" ? story.descriptionAr : story.descriptionEn
-    }
+    { image: linguisticFantasyImage, alt: "Linguistic Fantasy" },
+    { image: story.image, alt: story.titleEn }
   ];
-}
-
-function goToHeroSlide(index) {
-  const slides = document.querySelectorAll(".hero-image");
-  const contents = document.querySelectorAll(".hero-slide-content");
-  const dots = document.querySelectorAll(".hero-dot");
-  const heroLink = document.querySelector("#heroLink");
-  const heroSlides = getHeroSlides();
-
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
-  });
-
-  contents.forEach((content, i) => {
-    content.classList.toggle("active", i === index);
-  });
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("active", i === index);
-  });
-
-  if (heroLink) {
-    heroLink.href = heroSlides[index].link;
-  }
 }
 
 function startHeroSlideshow() {
@@ -1202,69 +1129,54 @@ function startHeroSlideshow() {
   let index = 0;
 
   heroSlideInterval = setInterval(() => {
-    index = (index + 1) % getHeroSlides().length;
-    goToHeroSlide(index);
+    const slides = document.querySelectorAll(".hero-image");
+
+    if (!slides.length) return;
+
+    index = (index + 1) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
   }, 5000);
 }
 
 function homeView() {
   setActive("home");
 
-  const slides = getHeroSlides();
+  const images = getHeroImages();
 
   app.innerHTML = `
     <section class="hero">
       <div class="wrap">
-        <a href="${slides[0].link}" id="heroLink" class="hero-box">
+        <div class="hero-box">
 
-          ${slides.map((slide, i) => `
+          ${images.map((img, i) => `
             <img
               class="hero-image ${i === 0 ? "active" : ""}"
-              src="${slide.image}"
-              alt="${slide.alt}"
+              src="${img.image}"
+              alt="${img.alt}"
             >
           `).join("")}
 
           <div class="hero-content">
-            ${slides.map((slide, i) => `
-              <div class="hero-slide-content ${i === 0 ? "active" : ""}">
-                <span class="eyebrow">
-                  ${slide.eyebrow}
-                </span>
+            <span class="eyebrow">
+              ${t("heroEyebrow")}
+            </span>
 
-                <h1>
-                  ${slide.title}
-                </h1>
+            <h1>
+              ${t("heroTitle")}
+            </h1>
 
-                <p>
-                  ${slide.text}
-                </p>
-              </div>
-            `).join("")}
-
-            <div class="hero-dots">
-              ${slides.map((slide, i) => `
-                <button
-                  class="hero-dot ${i === 0 ? "active" : ""}"
-                  data-index="${i}"
-                  aria-label="slide ${i + 1}"
-                ></button>
-              `).join("")}
-            </div>
+            <p>
+              ${t("heroSub")}
+            </p>
           </div>
 
-        </a>
+        </div>
       </div>
     </section>
   `;
-
-  document.querySelectorAll(".hero-dot").forEach(dot => {
-    dot.addEventListener("click", event => {
-      event.preventDefault();
-      goToHeroSlide(Number(dot.dataset.index));
-      startHeroSlideshow();
-    });
-  });
 
   startHeroSlideshow();
 }
