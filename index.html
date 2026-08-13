@@ -386,12 +386,14 @@ html[dir="ltr"] .idea-note {
 }
 
 .novel-card-link {
-  width:100%;
+  flex:0 0 auto;
+  width:230px;
 }
 
 .novel-card {
   position:relative;
-  min-height:360px;
+  min-height:340px;
+  aspect-ratio:2/3;
   overflow:hidden;
   border:1px solid var(--line);
   border-radius:15px;
@@ -460,7 +462,8 @@ html[dir="ltr"] .idea-note {
 
 .novel-cover {
   width:100%;
-  height:400px;
+  aspect-ratio:2/3;
+  height:auto;
   object-fit:cover;
   border-radius:10px;
 }
@@ -549,6 +552,17 @@ html[dir="ltr"] .idea-note {
 .chapter-content h2 {
   margin-bottom:25px;
   text-align:center;
+}
+
+.chapter-nav {
+  display:flex;
+  justify-content:center;
+  margin-top:35px;
+}
+
+.chapter-nav .chapter-button {
+  padding:14px 28px;
+  font-size:17px;
 }
 
 /* عن الموقع */
@@ -658,7 +672,8 @@ footer {
   }
 
   .novel-cover {
-    width:min(100%,330px);
+    width:min(100%,280px);
+    aspect-ratio:2/3;
     margin:auto;
   }
 
@@ -833,6 +848,8 @@ const T = {
     noChaptersText: "هذه الرواية لا تزال قيد الكتابة. ستظهر الفصول هنا قريبًا.",
     back: "العودة إلى الروايات",
     chapter: "الفصل",
+    nextChapter: "الفصل التالي ←",
+    backToNovel: "العودة إلى صفحة الرواية",
     loading: "جاري تحميل التعليقات...",
     noIdeas: "لا توجد أفكار بعد",
     beFirst: "كن أول من يشارك فكرة أو رؤية.",
@@ -869,6 +886,8 @@ const T = {
     noChaptersText: "This novel is still being written. Chapters will appear here soon.",
     back: "Back to novels",
     chapter: "Chapter",
+    nextChapter: "Next Chapter →",
+    backToNovel: "Back to Novel Page",
     loading: "Loading comments...",
     noIdeas: "No ideas yet",
     beFirst: "Be the first to share a vision.",
@@ -1528,14 +1547,20 @@ function novelView() {
 function chapterView(chapterId) {
   const novel = novels["linguistic-fantasy"];
 
-  const chapter = novel.chapters.find(
+  const chapters = novel.chapters;
+
+  const chapterIndex = chapters.findIndex(
     item => item.id === chapterId
   );
+
+  const chapter = chapters[chapterIndex];
 
   if (!chapter) {
     novelView();
     return;
   }
+
+  const nextChapter = chapters[chapterIndex + 1];
 
   const title =
     currentLang === "ar"
@@ -1546,6 +1571,24 @@ function chapterView(chapterId) {
     currentLang === "ar"
       ? chapter.contentAr
       : chapter.contentEn;
+
+  const nextButton = nextChapter
+    ? `
+      <a
+        class="chapter-button"
+        href="#/novel/linguistic-fantasy/chapter/${nextChapter.id}"
+      >
+        ${t("nextChapter")}
+      </a>
+    `
+    : `
+      <a
+        class="chapter-button secondary"
+        href="#/novel/linguistic-fantasy"
+      >
+        ${t("backToNovel")}
+      </a>
+    `;
 
   app.innerHTML = `
     <section class="section">
@@ -1565,6 +1608,10 @@ function chapterView(chapterId) {
             <p>${escapeHTML(paragraph)}</p>
           `).join("")}
         </article>
+
+        <div class="chapter-nav">
+          ${nextButton}
+        </div>
 
       </div>
     </section>
@@ -1705,14 +1752,20 @@ function storyChapterView(storyId, chapterId) {
     return;
   }
 
-  const chapter = story.chapters.find(
+  const chapters = story.chapters;
+
+  const chapterIndex = chapters.findIndex(
     item => item.id === chapterId
   );
+
+  const chapter = chapters[chapterIndex];
 
   if (!chapter) {
     storyView(storyId);
     return;
   }
+
+  const nextChapter = chapters[chapterIndex + 1];
 
   const title =
     currentLang === "ar"
@@ -1723,6 +1776,24 @@ function storyChapterView(storyId, chapterId) {
     currentLang === "ar"
       ? chapter.contentAr
       : chapter.contentEn;
+
+  const nextButton = nextChapter
+    ? `
+      <a
+        class="chapter-button"
+        href="#/story/${storyId}/chapter/${nextChapter.id}"
+      >
+        ${t("nextChapter")}
+      </a>
+    `
+    : `
+      <a
+        class="chapter-button secondary"
+        href="#/story/${storyId}"
+      >
+        ${t("backToNovel")}
+      </a>
+    `;
 
   app.innerHTML = `
     <section class="section">
@@ -1742,6 +1813,10 @@ function storyChapterView(storyId, chapterId) {
             <p>${escapeHTML(paragraph)}</p>
           `).join("")}
         </article>
+
+        <div class="chapter-nav">
+          ${nextButton}
+        </div>
 
       </div>
     </section>
