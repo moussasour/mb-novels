@@ -233,6 +233,49 @@ html[dir="rtl"] .quotes-track {
   height:100%;
   object-fit:cover;
   z-index:0;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+.hero-image.active {
+  opacity:1;
+}
+
+.hero-slide-content {
+  position:relative;
+  z-index:1;
+  opacity:0;
+  transition:opacity .6s ease;
+  display:none;
+}
+
+.hero-slide-content.active {
+  display:block;
+  opacity:1;
+}
+
+.hero-dots {
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  margin-top:22px;
+}
+
+.hero-dot {
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.hero-dot.active {
+  background:var(--gold);
 }
 
 .hero-box::after {
@@ -829,6 +872,7 @@ const T = {
     navAbout: "عن الموقع",
     heroTitle: "حيث يتنفس السحر",
     heroSub: "مكتبة جديدة تُبنى فصلًا بعد فصل. عوالم جديدة تنتظر من يكتشفها.",
+    featuredTitle: "أعمال مختارة",
     secIdeasTitle: "جدار الهمسات",
     secIdeasDesc: "شارك شرارات خيالك. اكتب بحرية — لا قواعد، فقط أحلام.",
     formName: "اسمك / لقبك",
@@ -867,6 +911,7 @@ const T = {
     navAbout: "About",
     heroTitle: "Where Magic Breathes",
     heroSub: "A new library is being built, chapter by chapter. New worlds are waiting to be discovered.",
+    featuredTitle: "Featured Works",
     secIdeasTitle: "The Whispering Wall",
     secIdeasDesc: "Share your sparks of imagination. Write freely — no rules, just dreams.",
     formName: "Your Name / Alias",
@@ -1102,38 +1147,126 @@ function setLanguage(language) {
 }
 
 /* الصفحة الرئيسية */
+let heroSlideInterval = null;
+
+function getHeroSlides() {
+  const story = shortStories["haris-al-saa-al-akhira"];
+
+  return [
+    {
+      link: "#/novel/linguistic-fantasy",
+      image: linguisticFantasyImage,
+      alt: "Linguistic Fantasy",
+      eyebrow: t("brandSub"),
+      title: t("heroTitle"),
+      text: t("heroSub")
+    },
+    {
+      link: "#/story/haris-al-saa-al-akhira",
+      image: story.image,
+      alt: story.titleEn,
+      eyebrow: t("storiesTitle"),
+      title: currentLang === "ar" ? story.titleAr : story.titleEn,
+      text: currentLang === "ar" ? story.descriptionAr : story.descriptionEn
+    }
+  ];
+}
+
+function goToHeroSlide(index) {
+  const slides = document.querySelectorAll(".hero-image");
+  const contents = document.querySelectorAll(".hero-slide-content");
+  const dots = document.querySelectorAll(".hero-dot");
+  const heroLink = document.querySelector("#heroLink");
+  const heroSlides = getHeroSlides();
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === index);
+  });
+
+  contents.forEach((content, i) => {
+    content.classList.toggle("active", i === index);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === index);
+  });
+
+  if (heroLink) {
+    heroLink.href = heroSlides[index].link;
+  }
+}
+
+function startHeroSlideshow() {
+  clearInterval(heroSlideInterval);
+
+  let index = 0;
+
+  heroSlideInterval = setInterval(() => {
+    index = (index + 1) % getHeroSlides().length;
+    goToHeroSlide(index);
+  }, 5000);
+}
+
 function homeView() {
   setActive("home");
+
+  const slides = getHeroSlides();
 
   app.innerHTML = `
     <section class="hero">
       <div class="wrap">
-        <img
-          class="hero-image"
-          src="${linguisticFantasyImage}"
-          alt="Linguistic Fantasy"
-        >
+        <a href="${slides[0].link}" id="heroLink" class="hero-box">
 
-        <div class="hero-content">
-          <span class="eyebrow">
-            ${t("brandSub")}
-          </span>
+          ${slides.map((slide, i) => `
+            <img
+              class="hero-image ${i === 0 ? "active" : ""}"
+              src="${slide.image}"
+              alt="${slide.alt}"
+            >
+          `).join("")}
 
-          <h1>
-            ${t("heroTitle")}
-          </h1>
+          <div class="hero-content">
+            ${slides.map((slide, i) => `
+              <div class="hero-slide-content ${i === 0 ? "active" : ""}">
+                <span class="eyebrow">
+                  ${slide.eyebrow}
+                </span>
 
-          <p>
-            ${t("heroSub")}
-          </p>
+                <h1>
+                  ${slide.title}
+                </h1>
 
-          <div style="color:var(--gold);font-size:25px;">
-            ✦ ❦
+                <p>
+                  ${slide.text}
+                </p>
+              </div>
+            `).join("")}
+
+            <div class="hero-dots">
+              ${slides.map((slide, i) => `
+                <button
+                  class="hero-dot ${i === 0 ? "active" : ""}"
+                  data-index="${i}"
+                  aria-label="slide ${i + 1}"
+                ></button>
+              `).join("")}
+            </div>
           </div>
-        </div>
+
+        </a>
       </div>
     </section>
   `;
+
+  document.querySelectorAll(".hero-dot").forEach(dot => {
+    dot.addEventListener("click", event => {
+      event.preventDefault();
+      goToHeroSlide(Number(dot.dataset.index));
+      startHeroSlideshow();
+    });
+  });
+
+  startHeroSlideshow();
 }
 
 /* صفحة الأفكار */
@@ -1864,6 +1997,10 @@ function aboutView() {
 function route() {
   const hash = location.hash || "#/";
   const parts = hash.replace("#/", "").split("/");
+
+  if (parts[0] !== "" && hash !== "#/") {
+    clearInterval(heroSlideInterval);
+  }
 
   if (parts[0] === "ideas") {
     ideasView();
