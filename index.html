@@ -2,70 +2,57 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b0f19">
-<title>MB Novels | Fantasy Worlds</title>
+<title>MB Novels</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IM+Fell+English+SC&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg-deep:#0b0f19;
-  --bg-card:#151b2b;
-  --bg-paper:#1e2538;
+  --bg:#0b0f19;
+  --card:#151b2b;
+  --paper:#1e2538;
   --gold:#d4af37;
   --gold-light:#f6e7ad;
   --wine:#722f37;
-  --text-main:#e0e6ed;
-  --text-muted:#94a3b8;
-  --line:rgba(212,175,55,.15);
-  --line-strong:rgba(212,175,55,.4);
-  --ease:cubic-bezier(.22,.75,.2,1);
-  --font-en:'Crimson Text',serif;
-  --font-display-en:'Cinzel',serif;
-  --font-accent-en:'IM Fell English SC',serif;
-  --font-ar:'Amiri',serif;
-  --font-display-ar:'Reem Kufi',sans-serif;
+  --text:#e0e6ed;
+  --muted:#94a3b8;
+  --line:rgba(212,175,55,.25);
 }
 
 * {
   margin:0;
   padding:0;
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
 }
 
 html {
   scroll-behavior:smooth;
-  -webkit-text-size-adjust:100%;
 }
 
 body {
   min-height:100vh;
   overflow-x:hidden;
-  background:var(--bg-deep);
-  color:var(--text-main);
-  font-family:var(--font-en);
+  background:var(--bg);
+  color:var(--text);
+  font-family:Georgia, serif;
   font-size:17px;
   line-height:1.7;
 }
 
 html[lang="ar"] body {
-  font-family:var(--font-ar);
+  font-family:"Amiri", serif;
 }
 
 html[lang="ar"] h1,
 html[lang="ar"] h2,
 html[lang="ar"] h3,
-html[lang="ar"] .brand-text strong {
-  font-family:var(--font-display-ar);
-}
-
-::selection {
-  background:var(--wine);
-  color:#fff;
+html[lang="ar"] button,
+html[lang="ar"] label {
+  font-family:"Reem Kufi", sans-serif;
 }
 
 a {
@@ -75,80 +62,27 @@ a {
 
 button {
   border:0;
-  background:none;
-  color:inherit;
   cursor:pointer;
   font-family:inherit;
 }
 
 img {
-  display:block;
   max-width:100%;
-}
-
-:focus-visible {
-  outline:2px solid var(--gold);
-  outline-offset:3px;
+  display:block;
 }
 
 .wrap {
   width:100%;
-  max-width:1200px;
+  max-width:1150px;
   margin:auto;
   padding:0 20px;
 }
 
-.grain {
-  position:fixed;
-  inset:0;
-  z-index:999;
-  pointer-events:none;
-  opacity:.035;
-  mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-h1,
-h2,
-h3 {
-  color:var(--gold);
-  font-family:var(--font-display-en);
-  line-height:1.25;
-}
-
-.eyebrow {
-  display:inline-block;
-  margin-bottom:12px;
-  color:var(--gold-light);
-  font-family:var(--font-accent-en);
-  font-size:13px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-}
-
-html[lang="ar"] .eyebrow {
-  font-family:var(--font-ar);
-  font-size:17px;
-  letter-spacing:normal;
-}
-
-.rv {
-  opacity:0;
-  transform:translateY(25px);
-  transition:opacity .7s var(--ease), transform .7s var(--ease);
-  transition-delay:calc(var(--i,0) * 100ms);
-}
-
-.rv.on {
-  opacity:1;
-  transform:none;
-}
-
-/* Header */
+/* رأس الموقع */
 .site-head {
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:10;
   background:rgba(11,15,25,.97);
   border-bottom:1px solid var(--line);
 }
@@ -165,106 +99,78 @@ html[lang="ar"] .eyebrow {
   align-items:center;
 }
 
-.logo-mark {
-  width:44px;
-  height:44px;
-  flex-shrink:0;
+.logo {
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--gold);
+  color:var(--gold-light);
+  font-family:Georgia, serif;
+  font-size:20px;
+  transform:rotate(45deg);
 }
 
-.logo-mark svg {
-  width:100%;
-  height:100%;
-  display:block;
+.logo span {
+  transform:rotate(-45deg);
 }
 
 .brand-text {
-  margin-left:12px;
+  margin-right:12px;
 }
 
-html[dir="rtl"] .brand-text {
-  margin-right:12px;
-  margin-left:0;
+html[dir="ltr"] .brand-text {
+  margin-right:0;
+  margin-left:12px;
 }
 
 .brand-text strong {
   display:block;
-  color:var(--text-main);
+  color:var(--text);
   font-size:19px;
 }
 
-.brand-text em {
+.brand-text small {
   display:block;
-  color:var(--text-muted);
-  font-size:10px;
-  font-style:normal;
-  letter-spacing:.12em;
-  text-transform:uppercase;
+  color:var(--muted);
+  font-size:11px;
 }
 
 .nav-actions {
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:8px;
 }
 
-.lang-btn {
-  min-height:40px;
+.lang-btn,
+.menu-btn {
   padding:9px 13px;
-  border:1px solid var(--line-strong);
+  border:1px solid var(--line);
+  background:transparent;
   color:var(--gold);
-  font-family:var(--font-accent-en);
-  font-size:12px;
+  font-size:14px;
 }
 
-html[lang="ar"] .lang-btn {
-  font-family:var(--font-ar);
-  font-size:16px;
-}
-
-.lang-btn:hover {
-  background:var(--gold);
-  color:var(--bg-deep);
-}
-
-.burger {
+.menu-btn {
   display:none;
-  width:44px;
-  height:44px;
-  color:var(--gold);
-  font-size:24px;
+  font-size:22px;
 }
 
+/* القائمة */
 .nav-links {
   display:flex;
   align-items:center;
 }
 
 .nav-links a {
-  position:relative;
-  margin-left:26px;
-  padding:8px 0;
-  color:var(--text-muted);
-  font-family:var(--font-accent-en);
-  font-size:14px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
+  margin-right:25px;
+  color:var(--muted);
+  transition:.3s;
 }
 
-html[dir="rtl"] .nav-links a {
-  margin-right:26px;
-  margin-left:0;
-}
-
-.nav-links a::after {
-  content:"";
-  position:absolute;
-  right:0;
-  bottom:2px;
-  left:0;
-  height:1px;
-  background:var(--gold);
-  transform:scaleX(0);
-  transition:.3s ease;
+html[dir="ltr"] .nav-links a {
+  margin-right:0;
+  margin-left:25px;
 }
 
 .nav-links a:hover,
@@ -272,52 +178,27 @@ html[dir="rtl"] .nav-links a {
   color:var(--gold);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  transform:scaleX(1);
-}
-
-/* Quotes */
+/* الشريط */
 .quotes-strip {
   overflow:hidden;
-  padding:10px 0;
+  padding:9px 0;
   background:var(--wine);
-  color:#fff;
   direction:ltr;
 }
 
 .quotes-track {
   display:flex;
   width:max-content;
-  animation:quotesMove 48s linear infinite;
+  animation:moveQuotes 45s linear infinite;
 }
 
 .quotes-track span {
   white-space:nowrap;
-  padding:0 30px;
-  font-family:var(--font-accent-en);
-  font-size:13px;
-  font-style:italic;
+  padding:0 28px;
+  color:white;
 }
 
-html[lang="ar"] .quotes-track span {
-  font-family:var(--font-ar);
-  font-size:16px;
-  font-style:normal;
-}
-
-.quotes-track i {
-  margin-left:25px;
-  color:var(--gold-light);
-  font-style:normal;
-}
-
-html[lang="ar"] .quotes-track i {
-  margin-right:25px;
-  margin-left:0;
-}
-
-@keyframes quotesMove {
+@keyframes moveQuotes {
   from { transform:translateX(0); }
   to { transform:translateX(-50%); }
 }
@@ -326,117 +207,87 @@ html[dir="rtl"] .quotes-track {
   animation-direction:reverse;
 }
 
-/* Hero */
+/* الواجهة */
 .hero {
-  padding:65px 0;
+  padding:55px 0;
   text-align:center;
 }
 
-.hero .wrap {
+.hero-box {
   position:relative;
-  z-index:2;
-  min-height:400px;
+  min-height:390px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  border-radius:16px;
-  padding:55px 25px;
+  border-radius:18px;
+  padding:35px 20px;
+  background:#17152b;
 }
 
-.hero-bg {
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  overflow:hidden;
-  background:#101727;
-}
-
-.hero-bg img {
+.hero-image {
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  opacity:0;
-  transition:opacity 1.5s ease;
+  z-index:0;
 }
 
-.hero-bg img.active {
-  opacity:1;
-}
-
-.hero-bg::after {
+.hero-box::after {
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
-    to bottom,
-    rgba(11,15,25,.72),
-    rgba(11,15,25,.45),
-    rgba(11,15,25,.92)
+    rgba(5,8,20,.65),
+    rgba(5,8,20,.9)
   );
 }
 
+.hero-content {
+  position:relative;
+  z-index:1;
+}
+
 .hero h1 {
-  margin-bottom:18px;
+  margin:15px 0;
   color:var(--gold-light);
-  font-size:clamp(35px,8vw,76px);
-  text-shadow:0 3px 15px rgba(0,0,0,.9);
+  font-size:clamp(35px,8vw,75px);
+  text-shadow:0 3px 15px #000;
 }
 
 .hero p {
   max-width:650px;
-  margin-bottom:25px;
-  color:#f0f3f6;
-  font-size:clamp(17px,4vw,21px);
-  text-shadow:0 2px 10px rgba(0,0,0,.95);
+  color:white;
+  font-size:20px;
+  text-shadow:0 2px 10px #000;
 }
 
-.hero .orn {
-  color:var(--gold);
-  font-size:25px;
-  letter-spacing:.5em;
-}
-
-/* Sections */
+/* الأقسام */
 .section {
-  padding:60px 0;
+  padding:55px 0;
 }
 
-.sec-head {
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:35px;
-  padding-bottom:15px;
+.section-title {
+  margin-bottom:30px;
+  padding-bottom:14px;
   border-bottom:1px solid var(--line);
+  color:var(--gold);
+  font-size:clamp(27px,5vw,42px);
 }
 
-.sec-head h2 {
-  font-size:clamp(25px,6vw,42px);
-}
-
-.novels-section-title {
-  margin:35px 0 20px;
-  font-size:clamp(24px,5vw,36px);
-}
-
-/* Ideas */
+/* نموذج التعليقات */
 .ideas-layout {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:45px;
-  align-items:start;
+  gap:35px;
 }
 
 .ideas-form {
   padding:24px;
-  border:1px solid var(--line-strong);
-  background:var(--bg-paper);
+  border:1px solid var(--line);
+  background:var(--paper);
 }
 
 .form-group {
@@ -445,15 +296,8 @@ html[dir="rtl"] .quotes-track {
 
 .form-group label {
   display:block;
-  margin-bottom:8px;
+  margin-bottom:7px;
   color:var(--gold);
-  font-family:var(--font-accent-en);
-  font-size:13px;
-}
-
-html[lang="ar"] .form-group label {
-  font-family:var(--font-ar);
-  font-size:17px;
 }
 
 .form-input,
@@ -461,11 +305,16 @@ html[lang="ar"] .form-group label {
   width:100%;
   padding:13px;
   border:1px solid var(--line);
-  outline:none;
-  background:var(--bg-deep);
-  color:var(--text-main);
+  outline:0;
+  background:var(--bg);
+  color:var(--text);
   font:inherit;
   font-size:16px;
+}
+
+.form-textarea {
+  min-height:120px;
+  resize:vertical;
 }
 
 .form-input:focus,
@@ -473,126 +322,90 @@ html[lang="ar"] .form-group label {
   border-color:var(--gold);
 }
 
-.form-textarea {
-  min-height:110px;
-  resize:vertical;
-}
-
 .btn-primary {
   width:100%;
-  padding:14px 25px;
+  padding:14px;
   background:var(--gold);
-  color:var(--bg-deep);
-  font-family:var(--font-accent-en);
+  color:var(--bg);
+  font-size:16px;
   font-weight:bold;
-  transition:.3s ease;
 }
 
-html[lang="ar"] .btn-primary {
-  font-family:var(--font-ar);
-  font-size:17px;
-}
-
-.btn-primary:hover {
-  transform:translateY(-3px);
-  box-shadow:0 10px 30px rgba(212,175,55,.3);
+.btn-primary:disabled {
+  opacity:.6;
+  cursor:wait;
 }
 
 .ideas-wall {
-  max-height:510px;
-  overflow-y:auto;
+  max-height:550px;
+  overflow:auto;
 }
 
 .idea-note {
-  margin-bottom:16px;
-  padding:18px;
-  border-left:3px solid var(--wine);
-  background:var(--bg-card);
-  color:var(--text-muted);
-  font-style:italic;
+  margin-bottom:15px;
+  padding:17px;
+  border-right:3px solid var(--wine);
+  background:var(--card);
+  color:var(--muted);
 }
 
-html[dir="rtl"] .idea-note {
-  border-right:3px solid var(--wine);
-  border-left:0;
+html[dir="ltr"] .idea-note {
+  border-right:0;
+  border-left:3px solid var(--wine);
 }
 
 .idea-note .author {
   display:block;
-  margin-top:9px;
+  margin-top:8px;
   color:var(--gold);
-  font-size:12px;
-  font-style:normal;
+  font-size:13px;
 }
 
-/* Novels */
-.novels-carousel {
-  display:flex;
-  gap:20px;
-  overflow-x:auto;
-  padding:10px 3px 20px;
-  scroll-snap-type:x mandatory;
-}
-
-html[dir="rtl"] .novels-carousel {
-  direction:rtl;
-}
-
-.empty-state {
-  width:100%;
-  padding:55px 20px;
-  border:1px dashed var(--line-strong);
-  border-radius:12px;
-  background:rgba(21,27,43,.4);
+.loading,
+.empty-state,
+.error-state {
+  padding:40px 20px;
+  border:1px dashed var(--line);
+  color:var(--muted);
   text-align:center;
 }
 
 .empty-state .icon,
-.chapter-empty .icon {
-  margin-bottom:16px;
-  color:var(--gold);
-  font-size:48px;
-}
-
-.empty-state h3,
-.chapter-empty h2 {
-  margin-bottom:10px;
-  color:var(--text-main);
-}
-
-.empty-state p,
-.chapter-empty p {
-  color:var(--text-muted);
-}
-
-/* Coming Soon card */
-.novel-link {
+.error-state .icon {
   display:block;
+  margin-bottom:10px;
+  font-size:40px;
+}
+
+/* بطاقات الروايات */
+.novels-carousel {
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  padding:10px 0 25px;
+}
+
+.novel-card-link {
   width:100%;
 }
 
-.coming-novel-card {
+.novel-card {
   position:relative;
-  width:100%;
-  max-width:720px;
-  min-height:380px;
-  margin:auto;
+  min-height:360px;
   overflow:hidden;
-  border:1px solid var(--line-strong);
-  border-radius:16px;
-  background:var(--bg-card);
-  box-shadow:0 18px 45px rgba(0,0,0,.55);
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:var(--card);
   cursor:pointer;
-  scroll-snap-align:center;
-  transition:.35s ease;
+  transition:.3s;
 }
 
-.coming-novel-card:hover {
+.novel-card:hover {
   transform:translateY(-6px);
-  box-shadow:0 22px 55px rgba(0,0,0,.7);
+  box-shadow:0 15px 35px #000;
 }
 
-.coming-novel-card > img {
+.novel-card img {
   position:absolute;
   inset:0;
   width:100%;
@@ -600,134 +413,91 @@ html[dir="rtl"] .novels-carousel {
   object-fit:cover;
 }
 
-.coming-novel-card::after {
+.novel-card::after {
   content:"";
   position:absolute;
   inset:0;
-  z-index:1;
   background:linear-gradient(
-    to bottom,
-    rgba(5,8,15,.15),
-    rgba(5,8,15,.5) 45%,
-    rgba(5,8,15,.95)
+    transparent 25%,
+    rgba(0,0,0,.9)
   );
 }
 
-.coming-novel-content {
-  position:relative;
-  z-index:2;
-  min-height:380px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-end;
-  padding:35px 25px;
+.novel-card-content {
+  position:absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:1;
+  padding:25px;
   text-align:center;
 }
 
-.novel-status {
-  margin-bottom:10px;
+.novel-card-content h3 {
   color:var(--gold-light);
-  font-family:var(--font-accent-en);
-  font-size:14px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+  font-size:34px;
+  direction:ltr;
 }
 
-html[lang="ar"] .novel-status {
-  font-family:var(--font-ar);
-  font-size:18px;
-  letter-spacing:normal;
+.novel-card-content p {
+  color:white;
 }
 
-.coming-novel-content h3 {
-  margin-bottom:12px;
-  color:var(--gold-light);
-  font-size:clamp(28px,5vw,48px);
-  text-shadow:0 3px 15px rgba(0,0,0,.95);
-}
-
-.coming-novel-content p {
-  max-width:570px;
-  color:#f0f3f6;
-  font-size:16px;
-  line-height:1.8;
-  text-shadow:0 2px 9px rgba(0,0,0,.95);
-}
-
-.novel-decoration {
-  margin-top:14px;
-  color:var(--gold);
-  font-size:21px;
-}
-
-/* Novel Details */
-.novel-detail {
-  max-width:1000px;
+/* صفحة تفاصيل الرواية */
+.novel-details {
+  max-width:950px;
   margin:auto;
 }
 
-.novel-detail-card {
+.novel-details-box {
   display:grid;
   grid-template-columns:300px 1fr;
-  gap:35px;
-  align-items:start;
-  margin-bottom:40px;
+  gap:30px;
   padding:25px;
-  border:1px solid var(--line-strong);
-  background:var(--bg-card);
-  box-shadow:0 15px 40px rgba(0,0,0,.35);
+  border:1px solid var(--line);
+  background:var(--card);
 }
 
-.novel-detail-cover {
+.novel-cover {
   width:100%;
   height:400px;
   object-fit:cover;
-  border:1px solid var(--line-strong);
   border-radius:10px;
 }
 
-.novel-detail-info h1 {
+.novel-details h1 {
   margin:12px 0 16px;
   color:var(--gold-light);
   font-size:clamp(30px,6vw,52px);
+  direction:ltr;
 }
 
-.novel-detail-description {
-  margin-bottom:23px;
-  color:var(--text-muted);
+.novel-description {
+  margin-bottom:20px;
+  color:var(--muted);
   font-size:18px;
-  line-height:1.9;
 }
 
 .chapter-count {
   display:inline-block;
-  margin-bottom:24px;
-  padding:10px 16px;
-  border:1px solid var(--line-strong);
+  margin-bottom:20px;
+  padding:9px 14px;
+  border:1px solid var(--line);
   color:var(--gold);
-  font-size:17px;
 }
 
-.chapter-actions {
+.chapter-buttons {
   display:flex;
   flex-wrap:wrap;
-  gap:12px;
+  gap:10px;
 }
 
 .chapter-button {
   display:inline-block;
-  padding:12px 18px;
+  padding:11px 16px;
   border:1px solid var(--gold);
   background:var(--gold);
-  color:var(--bg-deep);
-  font-family:var(--font-accent-en);
-  transition:.3s ease;
-}
-
-html[lang="ar"] .chapter-button {
-  font-family:var(--font-ar);
-  font-size:17px;
+  color:var(--bg);
 }
 
 .chapter-button.secondary {
@@ -735,65 +505,43 @@ html[lang="ar"] .chapter-button {
   color:var(--gold);
 }
 
-.chapter-button:hover {
-  background:transparent;
-  color:var(--gold);
-}
-
-.chapter-button.secondary:hover {
-  background:var(--gold);
-  color:var(--bg-deep);
-}
-
 .chapter-button.disabled {
-  opacity:.45;
+  opacity:.4;
   pointer-events:none;
 }
 
-.chapters-section-title {
-  margin-bottom:20px;
-  color:var(--gold);
-  font-size:30px;
-}
-
-.chapters-list {
+.chapter-list {
   display:grid;
   gap:12px;
 }
 
-.chapter-list-item {
+.chapter-item {
   display:block;
-  padding:17px 20px;
+  padding:16px;
   border:1px solid var(--line);
-  background:var(--bg-card);
-  transition:.3s ease;
+  background:var(--card);
+  transition:.3s;
 }
 
-.chapter-list-item:hover {
+.chapter-item:hover {
   border-color:var(--gold);
   color:var(--gold);
-  transform:translateX(-5px);
 }
 
-html[dir="ltr"] .chapter-list-item:hover {
-  transform:translateX(5px);
+.reader-back {
+  display:inline-block;
+  margin-bottom:20px;
+  padding:8px 14px;
+  border:1px solid var(--line);
+  color:var(--gold);
 }
 
-.chapter-empty {
-  padding:55px 20px;
-  border:1px dashed var(--line-strong);
-  background:rgba(21,27,43,.4);
-  text-align:center;
-}
-
-/* Chapter reader */
 .chapter-content {
-  max-width:900px;
+  max-width:850px;
   margin:auto;
   padding:30px;
-  border:1px solid var(--line);
-  background:var(--bg-paper);
-  color:var(--text-main);
+  background:var(--paper);
+  color:var(--text);
   font-size:19px;
   line-height:2;
 }
@@ -803,56 +551,22 @@ html[dir="ltr"] .chapter-list-item:hover {
   text-align:center;
 }
 
-.chapter-content p {
-  margin-bottom:18px;
-}
-
-.reader-back {
-  display:inline-block;
-  margin-bottom:20px;
-  padding:9px 16px;
-  border:1px solid var(--line-strong);
-  color:var(--gold);
-}
-
-.reader-back:hover {
-  background:var(--gold);
-  color:var(--bg-deep);
-}
-
-/* About */
+/* عن الموقع */
 .about-box {
   max-width:800px;
   margin:auto;
   text-align:center;
 }
 
-.about-text {
-  color:var(--text-muted);
-  line-height:1.9;
-}
-
-.about-text p {
+.about-box p {
   margin-bottom:18px;
-}
-
-.about-logo-box {
-  margin-top:40px;
-  padding:30px;
-  border:1px solid var(--line-strong);
-  background:var(--bg-card);
-}
-
-.about-logo-box .logo-mark {
-  width:90px;
-  height:90px;
-  margin:0 auto 18px;
+  color:var(--muted);
 }
 
 /* Footer */
 footer {
-  margin-top:60px;
-  padding:50px 0 30px;
+  margin-top:50px;
+  padding:45px 0 25px;
   border-top:3px solid var(--gold);
   background:#05080f;
 }
@@ -860,26 +574,12 @@ footer {
 .footer-grid {
   display:grid;
   grid-template-columns:2fr 1fr 1fr;
-  gap:40px;
-  margin-bottom:40px;
-}
-
-.footer-brand p {
-  margin-top:15px;
-  color:var(--text-muted);
-  font-size:14px;
+  gap:30px;
 }
 
 .footer-col h4 {
-  margin-bottom:18px;
+  margin-bottom:14px;
   color:var(--gold);
-  font-family:var(--font-accent-en);
-  font-size:14px;
-}
-
-html[lang="ar"] .footer-col h4 {
-  font-family:var(--font-ar);
-  font-size:18px;
 }
 
 .footer-col ul {
@@ -887,53 +587,41 @@ html[lang="ar"] .footer-col h4 {
 }
 
 .footer-col li {
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .footer-col a {
-  color:var(--text-muted);
-}
-
-.footer-col a:hover {
-  color:var(--gold);
+  color:var(--muted);
 }
 
 .copyright {
-  padding-top:25px;
+  margin-top:35px;
+  padding-top:20px;
   border-top:1px solid var(--line);
-  color:var(--text-muted);
-  font-size:11px;
+  color:var(--muted);
   text-align:center;
+  font-size:12px;
 }
 
-/* Toast */
 .toast {
   position:fixed;
   bottom:25px;
   left:50%;
-  z-index:1000;
-  max-width:90%;
-  padding:13px 25px;
+  z-index:100;
+  padding:12px 22px;
   transform:translate(-50%,120px);
   background:var(--gold);
-  color:var(--bg-deep);
-  text-align:center;
-  pointer-events:none;
-  transition:.5s ease;
+  color:var(--bg);
+  transition:.4s;
 }
 
 .toast.show {
   transform:translate(-50%,0);
 }
 
-/* Mobile */
-@media (max-width:900px) {
-  .burger {
+@media(max-width:850px) {
+  .menu-btn {
     display:block;
-  }
-
-  .brand-text em {
-    display:none;
   }
 
   .nav-links {
@@ -943,9 +631,9 @@ html[lang="ar"] .footer-col h4 {
     left:0;
     display:none;
     flex-direction:column;
-    padding:8px 20px 16px;
+    padding:10px 20px;
+    background:var(--bg);
     border-bottom:2px solid var(--gold);
-    background:var(--bg-deep);
   }
 
   body.menu-open .nav-links {
@@ -953,63 +641,38 @@ html[lang="ar"] .footer-col h4 {
   }
 
   .nav-links a,
-  html[dir="rtl"] .nav-links a {
+  html[dir="ltr"] .nav-links a {
     width:100%;
     margin:0;
-    padding:15px 6px;
-    border-bottom:1px dashed var(--line);
+    padding:13px;
+    border-bottom:1px solid var(--line);
     text-align:center;
-  }
-
-  .nav-links a:last-child {
-    border-bottom:0;
-  }
-
-  .nav-links a::after {
-    display:none;
   }
 
   .ideas-layout {
     grid-template-columns:1fr;
-    gap:30px;
   }
-}
 
-@media (max-width:750px) {
-  .novel-detail-card {
+  .novel-details-box {
     grid-template-columns:1fr;
   }
 
-  .novel-detail-cover {
+  .novel-cover {
     width:min(100%,330px);
-    height:420px;
     margin:auto;
   }
 
-  .novel-detail-info {
+  .novel-details-info {
     text-align:center;
   }
 
-  .chapter-actions {
+  .chapter-buttons {
     justify-content:center;
   }
-}
 
-@media (max-width:768px) {
   .footer-grid {
     grid-template-columns:1fr;
-    gap:28px;
     text-align:center;
-  }
-
-  .coming-novel-card,
-  .coming-novel-content {
-    min-height:320px;
-  }
-
-  .chapter-content {
-    padding:20px;
-    font-size:18px;
   }
 }
 </style>
@@ -1017,67 +680,30 @@ html[lang="ar"] .footer-col h4 {
 
 <body>
 
-<div class="grain"></div>
-<div class="toast" id="toast"></div>
-
 <header class="site-head">
   <div class="wrap">
 
     <a href="#/" class="brand">
-      <div class="logo-mark">
-        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="goldLogo" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f6e7ad"/>
-              <stop offset="45%" stop-color="#d4af37"/>
-              <stop offset="100%" stop-color="#8a7020"/>
-            </linearGradient>
-          </defs>
-
-          <polygon
-            points="60,4 116,34 116,86 60,116 4,86 4,34"
-            fill="rgba(212,175,55,.06)"
-            stroke="url(#goldLogo)"
-            stroke-width="3"
-          />
-
-          <text
-            x="60"
-            y="75"
-            text-anchor="middle"
-            font-family="Georgia, serif"
-            font-weight="800"
-            font-size="50"
-            letter-spacing="-5"
-            fill="url(#goldLogo)"
-          >MB</text>
-
-          <path
-            d="M37 89 Q60 103 83 89"
-            fill="none"
-            stroke="url(#goldLogo)"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-        </svg>
+      <div class="logo">
+        <span>MB</span>
       </div>
 
       <div class="brand-text">
         <strong data-i18n="brandName">روايات MB</strong>
-        <em data-i18n="brandSub">عوالم الفانتازيا</em>
+        <small data-i18n="brandSub">عوالم الفانتازيا</small>
       </div>
     </a>
 
     <div class="nav-actions">
       <button class="lang-btn" id="langToggle">English</button>
-      <button class="burger" id="burger">☰</button>
+      <button class="menu-btn" id="menuBtn">☰</button>
     </div>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="#/" data-r="home" data-i18n="navHome">الرئيسية</a>
-      <a href="#/ideas" data-r="ideas" data-i18n="navIdeas">أفكار القراء</a>
-      <a href="#/novels" data-r="novels" data-i18n="navNovels">رواياتي</a>
-      <a href="#/about" data-r="about" data-i18n="navAbout">عن الموقع</a>
+    <nav class="nav-links">
+      <a href="#/" data-route="home" data-i18n="navHome">الرئيسية</a>
+      <a href="#/ideas" data-route="ideas" data-i18n="navIdeas">أفكار القراء</a>
+      <a href="#/novels" data-route="novels" data-i18n="navNovels">رواياتي</a>
+      <a href="#/about" data-route="about" data-i18n="navAbout">عن الموقع</a>
     </nav>
 
   </div>
@@ -1094,44 +720,10 @@ html[lang="ar"] .footer-col h4 {
 
     <div class="footer-grid">
 
-      <div class="footer-brand">
+      <div>
         <div class="brand">
-          <div class="logo-mark">
-            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="goldFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#f6e7ad"/>
-                  <stop offset="45%" stop-color="#d4af37"/>
-                  <stop offset="100%" stop-color="#8a7020"/>
-                </linearGradient>
-              </defs>
-
-              <polygon
-                points="60,4 116,34 116,86 60,116 4,86 4,34"
-                fill="rgba(212,175,55,.06)"
-                stroke="url(#goldFooter)"
-                stroke-width="3"
-              />
-
-              <text
-                x="60"
-                y="75"
-                text-anchor="middle"
-                font-family="Georgia, serif"
-                font-weight="800"
-                font-size="50"
-                letter-spacing="-5"
-                fill="url(#goldFooter)"
-              >MB</text>
-
-              <path
-                d="M37 89 Q60 103 83 89"
-                fill="none"
-                stroke="url(#goldFooter)"
-                stroke-width="2.5"
-                stroke-linecap="round"
-              />
-            </svg>
+          <div class="logo">
+            <span>MB</span>
           </div>
 
           <div class="brand-text">
@@ -1146,16 +738,25 @@ html[lang="ar"] .footer-col h4 {
 
       <div class="footer-col">
         <h4 data-i18n="footerLibrary">المكتبة</h4>
+
         <ul>
-          <li><a href="#/novels" data-i18n="navNovels">رواياتي</a></li>
-          <li><a href="#/ideas" data-i18n="navIdeas">أفكار القراء</a></li>
+          <li>
+            <a href="#/novels" data-i18n="navNovels">رواياتي</a>
+          </li>
+
+          <li>
+            <a href="#/ideas" data-i18n="navIdeas">أفكار القراء</a>
+          </li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4 data-i18n="footerExplore">استكشف</h4>
+
         <ul>
-          <li><a href="#/about" data-i18n="navAbout">عن الموقع</a></li>
+          <li>
+            <a href="#/about" data-i18n="navAbout">عن الموقع</a>
+          </li>
         </ul>
       </div>
 
@@ -1168,133 +769,216 @@ html[lang="ar"] .footer-col h4 {
   </div>
 </footer>
 
+<div class="toast" id="toast"></div>
+
+<!-- مكتبة Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+/* =====================================================
+   اتصال Supabase
+   ===================================================== */
+
+const SUPABASE_URL =
+  "https://bcdyjkmqcdntdixtscfg.supabase.co";
+
+const SUPABASE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJjZHlqa21xY2RudGRpeHRzY2ZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NzA4MDgsImV4cCI6MjEwMjE0NjgwOH0.pz7wHzL8dMw6TDikNpZRo1QrVt7MHQsP0MGcR-I6r74";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================================
+   الصورة المدمجة
+   ===================================================== */
+
+const linguisticFantasyImage =
+  "data:image/svg+xml;charset=UTF-8," +
+  encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080d20"/>
+      <stop offset="50%" stop-color="#241538"/>
+      <stop offset="100%" stop-color="#692d42"/>
+    </linearGradient>
+
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff2af"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a7020"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+
+  <circle cx="1280" cy="170" r="95" fill="#f6e7ad"/>
+  <circle cx="1320" cy="140" r="95" fill="#13132b"/>
+
+  <g fill="#f6e7ad">
+    <circle cx="130" cy="130" r="3"/>
+    <circle cx="250" cy="240" r="4"/>
+    <circle cx="410" cy="110" r="3"/>
+    <circle cx="570" cy="180" r="3"/>
+    <circle cx="750" cy="100" r="4"/>
+    <circle cx="900" cy="190" r="3"/>
+    <circle cx="1060" cy="90" r="4"/>
+    <circle cx="1460" cy="300" r="3"/>
+  </g>
+
+  <path
+    d="M0 580 Q130 410 260 580 Q390 400 520 580 Q680 390 820 580 Q960 400 1100 580 Q1300 390 1600 580 L1600 900 L0 900Z"
+    fill="#101426"
+  />
+
+  <g transform="translate(570 280)" fill="#111426" stroke="url(#gold)" stroke-width="5">
+    <rect x="120" y="155" width="310" height="250"/>
+    <rect x="55" y="75" width="95" height="330"/>
+    <rect x="400" y="45" width="105" height="360"/>
+    <path d="M45 75 L102 15 L160 75Z"/>
+    <path d="M390 45 L452 -20 L515 45Z"/>
+    <rect x="250" y="265" width="55" height="140" rx="26" fill="#050711"/>
+    <rect x="82" y="145" width="34" height="65" rx="16" fill="#d4af37"/>
+    <rect x="435" y="125" width="34" height="65" rx="16" fill="#d4af37"/>
+    <rect x="190" y="205" width="35" height="65" rx="16" fill="#d4af37"/>
+    <rect x="330" y="205" width="35" height="65" rx="16" fill="#d4af37"/>
+  </g>
+
+  <path
+    d="M0 650 Q350 570 800 670 Q1200 560 1600 650 L1600 900 L0 900Z"
+    fill="#080a15"
+  />
+
+  <g fill="url(#gold)" font-family="Georgia, serif" font-size="60" font-weight="bold">
+    <text x="320" y="360">A</text>
+    <text x="440" y="300">م</text>
+    <text x="1030" y="330">Λ</text>
+    <text x="1170" y="440">ن</text>
+    <text x="1340" y="520">Ƶ</text>
+    <text x="260" y="520">ل</text>
+  </g>
+
+  <g transform="translate(630 650)">
+    <path
+      d="M0 80 Q150 20 300 80 L300 220 Q150 155 0 220Z"
+      fill="#161b32"
+      stroke="url(#gold)"
+      stroke-width="5"
+    />
+
+    <path d="M150 45 L150 185" stroke="#d4af37" stroke-width="4"/>
+
+    <path
+      d="M35 100 Q90 75 135 105 M165 105 Q220 75 270 100"
+      fill="none"
+      stroke="#f6e7ad"
+      stroke-width="4"
+    />
+  </g>
+
+  <text
+    x="800"
+    y="820"
+    text-anchor="middle"
+    fill="#f6e7ad"
+    font-family="Georgia, serif"
+    font-size="54"
+    font-weight="bold"
+    letter-spacing="5"
+  >
+    LINGUISTIC FANTASY
+  </text>
+</svg>
+`);
+
+/* =====================================================
+   الترجمة
+   ===================================================== */
+
 const T = {
-  en: {
-    brandName:"MB Novels",
-    brandSub:"Realms of Fantasy",
-
-    navHome:"Home",
-    navIdeas:"Reader Ideas",
-    navNovels:"My Novels",
-    navAbout:"About",
-
-    heroTitle:"Where Magic Breathes",
-    heroSub:"A new library is being built, chapter by chapter. New worlds are waiting to be discovered.",
-
-    secIdeasTitle:"The Whispering Wall",
-    secIdeasDesc:"Share your sparks of imagination. Write freely — no rules, just dreams.",
-
-    formName:"Your Name / Alias",
-    formIdea:"Your Vision...",
-    formBtn:"Cast Your Idea ✦",
-
-    footerDesc:"Crafting worlds where magic breathes and legends never truly die.",
-    footerLibrary:"The Library",
-    footerExplore:"Explore",
-
-    toastSuccess:"Your vision has been added ✦",
-
-    storiesTitle:"Short Stories",
-    comingNovelStatus:"Coming Soon",
-
-    novelDescription:"Description",
-    totalChapters:"Total chapters",
-    firstChapter:"First chapter",
-    latestChapter:"Latest chapter",
-    chaptersList:"Chapters",
-    noChapters:"No chapters yet",
-    noChaptersText:"This novel is still being written. Chapters will appear here soon.",
-    backToNovels:"Back to Novels",
-    chapterNumber:"Chapter",
-
-    emptyNovelsTitle:"The ink is still drying",
-    emptyNovelsText:"My novels will appear here soon. Each world is being written with care.",
-
-    quotes:[
-      "“It does not do to dwell on dreams and forget to live.” — J.K. Rowling",
-      "“Fantasy is hardly an escape from reality. It's a way of understanding it.” — Lloyd Alexander",
-      "“A reader lives a thousand lives before he dies.” — George R.R. Martin",
-      "“Magic is the art of turning invisible forces into visible ones.” — Aleister Crowley"
-    ],
-
-    aboutP1:"We craft worlds where magic breathes, legends live, and adventures never end.",
-    aboutP2:"This site is my library, my workshop, and my letterbox. Read, comment, and share your ideas — because the best stories are built together.",
-
-    heroImages:[
-      "./images/linguistic-fantasy-hero.png",
-      "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=2070&auto=format&fit=crop"
-    ]
+  ar: {
+    brandName: "روايات MB",
+    brandSub: "عوالم الفانتازيا",
+    navHome: "الرئيسية",
+    navIdeas: "أفكار القراء",
+    navNovels: "رواياتي",
+    navAbout: "عن الموقع",
+    heroTitle: "حيث يتنفس السحر",
+    heroSub: "مكتبة جديدة تُبنى فصلًا بعد فصل. عوالم جديدة تنتظر من يكتشفها.",
+    secIdeasTitle: "جدار الهمسات",
+    secIdeasDesc: "شارك شرارات خيالك. اكتب بحرية — لا قواعد، فقط أحلام.",
+    formName: "اسمك / لقبك",
+    formIdea: "رؤيتك...",
+    formBtn: "ألقِ بفكرتك ✦",
+    footerDesc: "نصنع عوالم حيث يتنفس السحر ولا تموت الأساطير أبدًا.",
+    footerLibrary: "المكتبة",
+    footerExplore: "استكشف",
+    toastSuccess: "تم حفظ تعليقك للجميع ✦",
+    storiesTitle: "قصص قصيرة",
+    comingSoon: "قادمة قريبًا",
+    totalChapters: "إجمالي الفصول",
+    firstChapter: "أول فصل",
+    latestChapter: "آخر فصل",
+    chapters: "الفصول",
+    noChapters: "لا يوجد فصول حتى الآن",
+    noChaptersText: "هذه الرواية لا تزال قيد الكتابة. ستظهر الفصول هنا قريبًا.",
+    back: "العودة إلى الروايات",
+    chapter: "الفصل",
+    loading: "جاري تحميل التعليقات...",
+    noIdeas: "لا توجد أفكار بعد",
+    beFirst: "كن أول من يشارك فكرة أو رؤية.",
+    loadError: "تعذر تحميل التعليقات",
+    saveError: "تعذر حفظ التعليق",
+    saving: "جاري الحفظ..."
   },
 
-  ar: {
-    brandName:"روايات MB",
-    brandSub:"عوالم الفانتازيا",
-
-    navHome:"الرئيسية",
-    navIdeas:"أفكار القراء",
-    navNovels:"رواياتي",
-    navAbout:"عن الموقع",
-
-    heroTitle:"حيث يتنفس السحر",
-    heroSub:"مكتبة جديدة تُبنى فصلًا بعد فصل. عوالم جديدة تنتظر من يكتشفها.",
-
-    secIdeasTitle:"جدار الهمسات",
-    secIdeasDesc:"شارك شرارات خيالك. اكتب بحرية — لا قواعد، فقط أحلام.",
-
-    formName:"اسمك / لقبك",
-    formIdea:"رؤيتك...",
-    formBtn:"ألقِ بفكرتك ✦",
-
-    footerDesc:"نصنع عوالم حيث يتنفس السحر ولا تموت الأساطير أبدًا.",
-    footerLibrary:"المكتبة",
-    footerExplore:"استكشف",
-
-    toastSuccess:"تمت إضافة رؤيتك ✦",
-
-    storiesTitle:"قصص قصيرة",
-    comingNovelStatus:"قريبًا",
-
-    novelDescription:"وصف الرواية",
-    totalChapters:"إجمالي الفصول",
-    firstChapter:"أول فصل",
-    latestChapter:"آخر فصل",
-    chaptersList:"الفصول",
-    noChapters:"لا يوجد فصول حتى الآن",
-    noChaptersText:"هذه الرواية لا تزال قيد الكتابة. ستظهر الفصول هنا قريبًا.",
-    backToNovels:"العودة إلى الروايات",
-    chapterNumber:"الفصل",
-
-    emptyNovelsTitle:"الحبر لا يزال يجف",
-    emptyNovelsText:"ستظهر رواياتي هنا قريبًا. كل عالم يُكتب بعناية.",
-
-    quotes:[
-      "«لا يصح أن نغرق في الأحلام وننسى أن نحيا.» — ج. ك. رولينغ",
-      "«الفانتازيا ليست هروبًا من الواقع، بل طريقة لفهمه.» — لويد ألكسندر",
-      "«القارئ يعيش ألف حياة قبل أن يموت.» — جورج ر. ر. مارتن",
-      "«السحر هو فن تحويل القوى غير المرئية إلى مرئية.» — أليستر كراولي"
-    ],
-
-    aboutP1:"نحن نصنع عوالم حيث يتنفس السحر، وتعيش الأساطير، ولا تنتهي المغامرات أبدًا.",
-    aboutP2:"هذا الموقع هو مكتبتنا، ورشتنا، وصندوق رسائلنا. اقرأ، علّق، وشاركنا أفكارك — لأن أفضل القصص تُبنى معًا.",
-
-    heroImages:[
-      "./images/linguistic-fantasy-hero.png",
-      "https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=2070&auto=format&fit=crop"
-    ]
+  en: {
+    brandName: "MB Novels",
+    brandSub: "Realms of Fantasy",
+    navHome: "Home",
+    navIdeas: "Reader Ideas",
+    navNovels: "My Novels",
+    navAbout: "About",
+    heroTitle: "Where Magic Breathes",
+    heroSub: "A new library is being built, chapter by chapter. New worlds are waiting to be discovered.",
+    secIdeasTitle: "The Whispering Wall",
+    secIdeasDesc: "Share your sparks of imagination. Write freely — no rules, just dreams.",
+    formName: "Your Name / Alias",
+    formIdea: "Your Vision...",
+    formBtn: "Cast Your Idea ✦",
+    footerDesc: "Crafting worlds where magic breathes and legends never truly die.",
+    footerLibrary: "The Library",
+    footerExplore: "Explore",
+    toastSuccess: "Your comment was saved ✦",
+    storiesTitle: "Short Stories",
+    comingSoon: "Coming Soon",
+    totalChapters: "Total chapters",
+    firstChapter: "First chapter",
+    latestChapter: "Latest chapter",
+    chapters: "Chapters",
+    noChapters: "No chapters yet",
+    noChaptersText: "This novel is still being written. Chapters will appear here soon.",
+    back: "Back to novels",
+    chapter: "Chapter",
+    loading: "Loading comments...",
+    noIdeas: "No ideas yet",
+    beFirst: "Be the first to share a vision.",
+    loadError: "Could not load comments",
+    saveError: "Could not save the comment",
+    saving: "Saving..."
   }
 };
 
-let currentLang = localStorage.getItem("mb_lang") || "ar";
-let heroTimer = null;
-let userIdeas = [];
+/* =====================================================
+   بيانات الرواية
+   ===================================================== */
 
-const novelsData = {
+const novels = {
   "linguistic-fantasy": {
-    title:"Linguistic Fantasy",
-    cover:"./images/linguistic-fantasy-hero.png",
+    title: "Linguistic Fantasy",
+    image: linguisticFantasyImage,
 
     descriptionAr:
       "عالم تتحول فيه اللغات إلى تعاويذ، وتصنع الكلمات الواقع، وتخفي كل لغة منسية قوة قديمة.",
@@ -1302,52 +986,30 @@ const novelsData = {
     descriptionEn:
       "A world where languages are spells, words shape reality, and every forgotten tongue hides an ancient power.",
 
-    /*
-      أضف الفصول الحقيقية داخل هذه القائمة لاحقًا.
-      حاليًا لا توجد فصول، لذلك ستظهر رسالة:
-      لا يوجد فصول حتى الآن
-    */
-    chapters:[]
+    chapters: []
   }
 };
 
-try {
-  const savedIdeas = JSON.parse(
-    localStorage.getItem("mb_ideas") || "[]"
-  );
+let currentLang = localStorage.getItem("mb_lang") || "ar";
+let currentIdeas = [];
 
-  userIdeas = Array.isArray(savedIdeas)
-    ? savedIdeas
-    : [];
-} catch {
-  userIdeas = [];
-  localStorage.removeItem("mb_ideas");
+const app = document.querySelector("#app");
+
+function t(key) {
+  return T[currentLang][key] || key;
 }
-
-const $ = (selector, root=document) =>
-  root.querySelector(selector);
-
-const $$ = (selector, root=document) =>
-  [...root.querySelectorAll(selector)];
-
-const app = $("#app");
-
-const t = key =>
-  T[currentLang][key] || key;
 
 function escapeHTML(value) {
   return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function showToast(message) {
-  const toast = $("#toast");
-
-  if (!toast) return;
+  const toast = document.querySelector("#toast");
 
   toast.textContent = message;
   toast.classList.add("show");
@@ -1357,54 +1019,36 @@ function showToast(message) {
   }, 3000);
 }
 
-function initReveals() {
-  const elements = $$(".rv");
+function renderQuotes() {
+  const quotes = currentLang === "ar"
+    ? [
+        "لا يصح أن نغرق في الأحلام وننسى أن نحيا. — ج. ك. رولينغ",
+        "الفانتازيا ليست هروبًا من الواقع، بل طريقة لفهمه. — لويد ألكسندر",
+        "القارئ يعيش ألف حياة قبل أن يموت. — جورج ر. ر. مارتن"
+      ]
+    : [
+        "It does not do to dwell on dreams and forget to live. — J.K. Rowling",
+        "Fantasy is a way of understanding reality. — Lloyd Alexander",
+        "A reader lives a thousand lives before he dies. — George R.R. Martin"
+      ];
 
-  if (!("IntersectionObserver" in window)) {
-    elements.forEach(el => el.classList.add("on"));
-    return;
-  }
+  const track = document.querySelector("#quotesTrack");
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("on");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold:.1
-  });
-
-  elements.forEach(el => observer.observe(el));
+  track.innerHTML = [...quotes, ...quotes]
+    .map(quote => `<span>${escapeHTML(quote)} ✦</span>`)
+    .join("");
 }
 
-function setActive(routeName) {
-  $$(".nav-links a").forEach(link => {
+function setActive(route) {
+  document.querySelectorAll(".nav-links a").forEach(link => {
     link.classList.toggle(
       "active",
-      link.dataset.r === routeName
+      link.dataset.route === route
     );
   });
 }
 
-function renderQuotes() {
-  const track = $("#quotesTrack");
-
-  if (!track) return;
-
-  track.innerHTML = [
-    ...T[currentLang].quotes,
-    ...T[currentLang].quotes
-  ].map(quote => `
-    <span>
-      ${escapeHTML(quote)}
-      <i>✦</i>
-    </span>
-  `).join("");
-}
-
-function setLang(language) {
+function setLanguage(language) {
   currentLang = language;
 
   localStorage.setItem("mb_lang", language);
@@ -1413,14 +1057,10 @@ function setLang(language) {
   document.documentElement.dir =
     language === "ar" ? "rtl" : "ltr";
 
-  const languageButton = $("#langToggle");
+  document.querySelector("#langToggle").textContent =
+    language === "ar" ? "English" : "العربية";
 
-  if (languageButton) {
-    languageButton.textContent =
-      language === "ar" ? "English" : "العربية";
-  }
-
-  $$("[data-i18n]").forEach(element => {
+  document.querySelectorAll("[data-i18n]").forEach(element => {
     const key = element.dataset.i18n;
 
     if (T[language][key]) {
@@ -1432,110 +1072,42 @@ function setLang(language) {
   route();
 }
 
-function startHeroSlider() {
-  if (heroTimer) {
-    clearInterval(heroTimer);
-    heroTimer = null;
-  }
-
-  const heroBg = $("#heroBg");
-
-  if (!heroBg) return;
-
-  const images = $$("img", heroBg);
-
-  if (images.length <= 1) return;
-
-  let index = 0;
-
-  heroTimer = setInterval(() => {
-    images[index].classList.remove("active");
-    index = (index + 1) % images.length;
-    images[index].classList.add("active");
-  }, 4500);
-}
-
-function emptyState(icon, titleKey, textKey) {
-  return `
-    <div class="empty-state">
-      <div class="icon">${icon}</div>
-      <h3>${t(titleKey)}</h3>
-      <p>${t(textKey)}</p>
-    </div>
-  `;
-}
-
+/* الصفحة الرئيسية */
 function homeView() {
   setActive("home");
-
-  const images = T[currentLang].heroImages;
 
   app.innerHTML = `
     <section class="hero">
       <div class="wrap">
+        <img
+          class="hero-image"
+          src="${linguisticFantasyImage}"
+          alt="Linguistic Fantasy"
+        >
 
-        <div class="hero-bg" id="heroBg">
-          ${images.map((image, index) => `
-            <img
-              src="${image}"
-              alt="Fantasy background"
-              class="${index === 0 ? "active" : ""}"
-            >
-          `).join("")}
+        <div class="hero-content">
+          <span class="eyebrow">
+            ${t("brandSub")}
+          </span>
+
+          <h1>
+            ${t("heroTitle")}
+          </h1>
+
+          <p>
+            ${t("heroSub")}
+          </p>
+
+          <div style="color:var(--gold);font-size:25px;">
+            ✦ ❦
+          </div>
         </div>
-
-        <span class="eyebrow rv">
-          ${t("brandSub")}
-        </span>
-
-        <h1 class="rv" style="--i:1">
-          ${t("heroTitle")}
-        </h1>
-
-        <p class="rv" style="--i:2">
-          ${t("heroSub")}
-        </p>
-
-        <div class="orn rv" style="--i:3">
-          ✦ ❦
-        </div>
-
       </div>
     </section>
   `;
-
-  startHeroSlider();
 }
 
-function renderIdeas() {
-  if (userIdeas.length === 0) {
-    return `
-      <div class="empty-state">
-        <div class="icon">✦</div>
-        <h3>
-          ${currentLang === "ar"
-            ? "لا توجد أفكار بعد"
-            : "No ideas yet"}
-        </h3>
-        <p>
-          ${currentLang === "ar"
-            ? "كن أول من يشارك فكرة أو رؤية."
-            : "Be the first to share a vision."}
-        </p>
-      </div>
-    `;
-  }
-
-  return [...userIdeas].reverse().map(idea => `
-    <div class="idea-note">
-      "${escapeHTML(idea.text)}"
-      <span class="author">
-        — ${escapeHTML(idea.name)}
-      </span>
-    </div>
-  `).join("");
-}
-
+/* صفحة الأفكار */
 function ideasView() {
   setActive("ideas");
 
@@ -1543,14 +1115,14 @@ function ideasView() {
     <section class="section">
       <div class="wrap">
 
-        <div class="sec-head">
-          <h2>${t("secIdeasTitle")}</h2>
-        </div>
+        <h2 class="section-title">
+          ${t("secIdeasTitle")}
+        </h2>
 
         <div class="ideas-layout">
 
           <div>
-            <p style="color:var(--text-muted);margin-bottom:25px;">
+            <p style="color:var(--muted);margin-bottom:22px;">
               ${t("secIdeasDesc")}
             </p>
 
@@ -1583,7 +1155,10 @@ function ideasView() {
                 ></textarea>
               </div>
 
-              <button class="btn-primary" type="submit">
+              <button
+                class="btn-primary"
+                type="submit"
+              >
                 ${t("formBtn")}
               </button>
 
@@ -1591,7 +1166,9 @@ function ideasView() {
           </div>
 
           <div class="ideas-wall">
-            ${renderIdeas()}
+            <div class="loading">
+              ${t("loading")}
+            </div>
           </div>
 
         </div>
@@ -1599,28 +1176,140 @@ function ideasView() {
     </section>
   `;
 
-  $("#ideaForm").addEventListener("submit", submitIdea);
+  document
+    .querySelector("#ideaForm")
+    .addEventListener("submit", saveIdea);
+
+  loadIdeas();
 }
 
+async function loadIdeas() {
+  const wall = document.querySelector(".ideas-wall");
+
+  if (!wall) return;
+
+  const result = await supabaseClient
+    .from("reader_ideas")
+    .select("id, name, text, created_at")
+    .order("created_at", {
+      ascending: false
+    });
+
+  if (result.error) {
+    console.error(result.error);
+
+    wall.innerHTML = `
+      <div class="error-state">
+        <span class="icon">⚠️</span>
+        <h3>${t("loadError")}</h3>
+      </div>
+    `;
+
+    return;
+  }
+
+  currentIdeas = result.data || [];
+
+  if (currentIdeas.length === 0) {
+    wall.innerHTML = `
+      <div class="empty-state">
+        <span class="icon">✦</span>
+        <h3>${t("noIdeas")}</h3>
+        <p>${t("beFirst")}</p>
+      </div>
+    `;
+
+    return;
+  }
+
+  wall.innerHTML = currentIdeas
+    .map(idea => `
+      <div class="idea-note">
+        "${escapeHTML(idea.text)}"
+        <span class="author">
+          — ${escapeHTML(idea.name)}
+        </span>
+      </div>
+    `)
+    .join("");
+}
+
+async function saveIdea(event) {
+  event.preventDefault();
+
+  const nameInput = document.querySelector("#ideaName");
+  const textInput = document.querySelector("#ideaText");
+  const button = event.submitter;
+
+  const name = nameInput.value.trim();
+  const text = textInput.value.trim();
+
+  if (!name || !text) return;
+
+  button.disabled = true;
+  button.textContent = t("saving");
+
+  const result = await supabaseClient
+    .from("reader_ideas")
+    .insert({
+      name: name.slice(0, 30),
+      text: text.slice(0, 300)
+    });
+
+  if (result.error) {
+    console.error(result.error);
+
+    showToast(t("saveError"));
+
+    button.disabled = false;
+    button.textContent = t("formBtn");
+
+    return;
+  }
+
+  nameInput.value = "";
+  textInput.value = "";
+
+  button.disabled = false;
+  button.textContent = t("formBtn");
+
+  showToast(t("toastSuccess"));
+
+  await loadIdeas();
+}
+
+/* صفحة الروايات */
 function novelsView() {
   setActive("novels");
 
-  const novel = novelsData["linguistic-fantasy"];
+  const novel = novels["linguistic-fantasy"];
 
   app.innerHTML = `
     <section class="section">
       <div class="wrap">
+
+        <h2 class="section-title">
+          ${t("navNovels")}
+        </h2>
 
         <h2 class="novels-section-title">
           ${currentLang === "ar" ? "رواياتي" : "My Novels"}
         </h2>
 
         <div class="novels-carousel">
-          ${emptyState(
-            "🖋️",
-            "emptyNovelsTitle",
-            "emptyNovelsText"
-          )}
+          <div class="empty-state">
+            <span class="icon">🖋️</span>
+            <h3>
+              ${currentLang === "ar"
+                ? "لا توجد روايات بعد"
+                : "No novels yet"}
+            </h3>
+            <p>
+              ${currentLang === "ar"
+                ? "ستتم إضافة الروايات الحقيقية لاحقًا."
+                : "Real novels will be added later."}
+            </p>
+          </div>
         </div>
 
         <h2 class="novels-section-title">
@@ -1628,39 +1317,45 @@ function novelsView() {
         </h2>
 
         <div class="novels-carousel">
-          ${emptyState(
-            "📚",
-            "emptyNovelsTitle",
-            "emptyNovelsText"
-          )}
+          <div class="empty-state">
+            <span class="icon">📚</span>
+            <h3>
+              ${currentLang === "ar"
+                ? "لا توجد قصص قصيرة بعد"
+                : "No short stories yet"}
+            </h3>
+            <p>
+              ${currentLang === "ar"
+                ? "ستتم إضافة القصص القصيرة لاحقًا."
+                : "Short stories will be added later."}
+            </p>
+          </div>
         </div>
 
         <h2 class="novels-section-title">
-          ${t("comingNovelStatus")}
+          ${t("comingSoon")}
         </h2>
 
         <div class="novels-carousel">
 
           <a
-            class="novel-link"
+            class="novel-card-link"
             href="#/novel/linguistic-fantasy"
           >
-            <article class="coming-novel-card">
+            <article class="novel-card">
 
               <img
-                src="${novel.cover}"
-                alt="${escapeHTML(novel.title)}"
-                loading="lazy"
+                src="${novel.image}"
+                alt="${novel.title}"
               >
 
-              <div class="coming-novel-content">
-
-                <span class="novel-status">
-                  ${t("comingNovelStatus")}
+              <div class="novel-card-content">
+                <span>
+                  ${t("comingSoon")}
                 </span>
 
-                <h3 dir="ltr">
-                  ${escapeHTML(novel.title)}
+                <h3>
+                  ${novel.title}
                 </h3>
 
                 <p>
@@ -1670,11 +1365,6 @@ function novelsView() {
                       : novel.descriptionEn
                   }
                 </p>
-
-                <div class="novel-decoration">
-                  ✦ ❦ ✦
-                </div>
-
               </div>
 
             </article>
@@ -1687,29 +1377,23 @@ function novelsView() {
   `;
 }
 
-function novelReaderView(slug) {
-  const novel = novelsData[slug];
-
-  if (!novel) {
-    novelsView();
-    return;
-  }
-
+/* تفاصيل الرواية */
+function novelView() {
+  const novel = novels["linguistic-fantasy"];
   const chapters = novel.chapters || [];
-  const totalChapters = chapters.length;
-  const firstChapter = chapters[0];
-  const latestChapter = chapters[chapters.length - 1];
+  const first = chapters[0];
+  const latest = chapters[chapters.length - 1];
 
   const description =
     currentLang === "ar"
       ? novel.descriptionAr
       : novel.descriptionEn;
 
-  const firstButton = firstChapter
+  const firstButton = first
     ? `
       <a
         class="chapter-button secondary"
-        href="#/novel/${slug}/chapter/${firstChapter.id}"
+        href="#/novel/linguistic-fantasy/chapter/${first.id}"
       >
         ${t("firstChapter")}
       </a>
@@ -1720,11 +1404,11 @@ function novelReaderView(slug) {
       </span>
     `;
 
-  const latestButton = latestChapter
+  const latestButton = latest
     ? `
       <a
         class="chapter-button"
-        href="#/novel/${slug}/chapter/${latestChapter.id}"
+        href="#/novel/linguistic-fantasy/chapter/${latest.id}"
       >
         ${t("latestChapter")}
       </a>
@@ -1735,20 +1419,20 @@ function novelReaderView(slug) {
       </span>
     `;
 
-  const chaptersHTML = totalChapters === 0
+  const chaptersHTML = chapters.length === 0
     ? `
       <div class="chapter-empty">
-        <div class="icon">📖</div>
+        <span class="icon">📖</span>
         <h2>${t("noChapters")}</h2>
         <p>${t("noChaptersText")}</p>
       </div>
     `
     : chapters.map((chapter, index) => `
       <a
-        class="chapter-list-item"
-        href="#/novel/${slug}/chapter/${chapter.id}"
+        class="chapter-item"
+        href="#/novel/linguistic-fantasy/chapter/${chapter.id}"
       >
-        ${t("chapterNumber")} ${index + 1}:
+        ${t("chapter")} ${index + 1}:
         ${
           currentLang === "ar"
             ? escapeHTML(chapter.titleAr)
@@ -1759,40 +1443,40 @@ function novelReaderView(slug) {
 
   app.innerHTML = `
     <section class="section">
-      <div class="wrap novel-detail">
+      <div class="wrap novel-details">
 
         <a href="#/novels" class="reader-back">
-          ← ${t("backToNovels")}
+          ← ${t("back")}
         </a>
 
-        <div class="novel-detail-card">
+        <div class="novel-details-box">
 
           <img
-            class="novel-detail-cover"
-            src="${novel.cover}"
-            alt="${escapeHTML(novel.title)}"
+            class="novel-cover"
+            src="${novel.image}"
+            alt="${novel.title}"
           >
 
-          <div class="novel-detail-info">
+          <div class="novel-details-info">
 
             <span class="eyebrow">
-              ${t("comingNovelStatus")}
+              ${t("comingSoon")}
             </span>
 
-            <h1 dir="ltr">
-              ${escapeHTML(novel.title)}
+            <h1>
+              ${novel.title}
             </h1>
 
-            <p class="novel-detail-description">
+            <p class="novel-description">
               ${description}
             </p>
 
             <div class="chapter-count">
               ${t("totalChapters")}:
-              <strong>${totalChapters}</strong>
+              <strong>${chapters.length}</strong>
             </div>
 
-            <div class="chapter-actions">
+            <div class="chapter-buttons">
               ${firstButton}
               ${latestButton}
             </div>
@@ -1801,11 +1485,11 @@ function novelReaderView(slug) {
 
         </div>
 
-        <h2 class="chapters-section-title">
-          ${t("chaptersList")}
+        <h2 class="novels-section-title">
+          ${t("chapters")}
         </h2>
 
-        <div class="chapters-list">
+        <div class="chapter-list">
           ${chaptersHTML}
         </div>
 
@@ -1814,20 +1498,16 @@ function novelReaderView(slug) {
   `;
 }
 
-function chapterView(slug, chapterId) {
-  const novel = novelsData[slug];
+/* صفحة الفصل */
+function chapterView(chapterId) {
+  const novel = novels["linguistic-fantasy"];
 
-  if (!novel) {
-    novelsView();
-    return;
-  }
-
-  const chapter = (novel.chapters || []).find(
+  const chapter = novel.chapters.find(
     item => item.id === chapterId
   );
 
   if (!chapter) {
-    novelReaderView(slug);
+    novelView();
     return;
   }
 
@@ -1836,7 +1516,7 @@ function chapterView(slug, chapterId) {
       ? chapter.titleAr
       : chapter.titleEn;
 
-  const paragraphs =
+  const content =
     currentLang === "ar"
       ? chapter.contentAr
       : chapter.contentEn;
@@ -1846,21 +1526,18 @@ function chapterView(slug, chapterId) {
       <div class="wrap">
 
         <a
-          href="#/novel/${slug}"
+          href="#/novel/linguistic-fantasy"
           class="reader-back"
         >
-          ← ${t("backToNovels")}
+          ← ${t("back")}
         </a>
 
         <article class="chapter-content">
           <h2>${escapeHTML(title)}</h2>
 
-          ${
-            paragraphs.map(paragraph => `
-              <p>${escapeHTML(paragraph)}</p>
-            `).join("")
-          }
-
+          ${content.map(paragraph => `
+            <p>${escapeHTML(paragraph)}</p>
+          `).join("")}
         </article>
 
       </div>
@@ -1868,62 +1545,7 @@ function chapterView(slug, chapterId) {
   `;
 }
 
-function submitIdea(event) {
-  event.preventDefault();
-
-  const nameInput = $("#ideaName");
-  const textInput = $("#ideaText");
-
-  const name = nameInput.value.trim();
-  const text = textInput.value.trim();
-
-  if (!name || !text) return;
-
-  userIdeas.push({
-    name,
-    text,
-    date:Date.now()
-  });
-
-  localStorage.setItem(
-    "mb_ideas",
-    JSON.stringify(userIdeas)
-  );
-
-  showToast(t("toastSuccess"));
-  ideasView();
-}
-
-function route() {
-  const hash = location.hash || "#/";
-  const parts = hash.replace("#/","").split("/");
-
-  if (parts[0] === "ideas") {
-    ideasView();
-  } else if (parts[0] === "novels") {
-    novelsView();
-  } else if (parts[0] === "about") {
-    aboutView();
-  } else if (
-    parts[0] === "novel" &&
-    parts[1] &&
-    parts[2] === "chapter" &&
-    parts[3]
-  ) {
-    chapterView(parts[1], parts[3]);
-  } else if (
-    parts[0] === "novel" &&
-    parts[1]
-  ) {
-    novelReaderView(parts[1]);
-  } else {
-    homeView();
-  }
-
-  initReveals();
-  window.scrollTo(0,0);
-}
-
+/* عن الموقع */
 function aboutView() {
   setActive("about");
 
@@ -1935,110 +1557,90 @@ function aboutView() {
           ${t("navAbout")}
         </span>
 
-        <h1 style="margin-bottom:25px;">
+        <h1>
           ${t("brandName")}
         </h1>
 
-        <div class="about-text">
-          <p>${t("aboutP1")}</p>
-          <p>${t("aboutP2")}</p>
-        </div>
+        <p>
+          ${
+            currentLang === "ar"
+              ? "نصنع عوالم حيث يتنفس السحر، وتعيش الأساطير، ولا تنتهي المغامرات."
+              : "We create worlds where magic breathes, legends live, and adventures never end."
+          }
+        </p>
 
-        <div class="about-logo-box">
-          <div class="logo-mark">
-            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="aboutGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#f6e7ad"/>
-                  <stop offset="45%" stop-color="#d4af37"/>
-                  <stop offset="100%" stop-color="#8a7020"/>
-                </linearGradient>
-              </defs>
-
-              <polygon
-                points="60,4 116,34 116,86 60,116 4,86 4,34"
-                fill="rgba(212,175,55,.06)"
-                stroke="url(#aboutGold)"
-                stroke-width="3"
-              />
-
-              <text
-                x="60"
-                y="75"
-                text-anchor="middle"
-                font-family="Georgia, serif"
-                font-weight="800"
-                font-size="50"
-                letter-spacing="-5"
-                fill="url(#aboutGold)"
-              >MB</text>
-
-              <path
-                d="M37 89 Q60 103 83 89"
-                fill="none"
-                stroke="url(#aboutGold)"
-                stroke-width="2.5"
-                stroke-linecap="round"
-              />
-            </svg>
-          </div>
-        </div>
+        <p>
+          ${
+            currentLang === "ar"
+              ? "هذا الموقع مكتبة وورشة للقصص والروايات."
+              : "This website is a library and workshop for stories and novels."
+          }
+        </p>
 
       </div>
     </section>
   `;
 }
 
-const langToggle = $("#langToggle");
+/* Router */
+function route() {
+  const hash = location.hash || "#/";
+  const parts = hash.replace("#/", "").split("/");
 
-if (langToggle) {
-  langToggle.addEventListener("click", () => {
-    setLang(currentLang === "ar" ? "en" : "ar");
-  });
+  if (parts[0] === "ideas") {
+    ideasView();
+  } else if (parts[0] === "novels") {
+    novelsView();
+  } else if (parts[0] === "about") {
+    aboutView();
+  } else if (
+    parts[0] === "novel" &&
+    parts[1] === "linguistic-fantasy" &&
+    parts[2] === "chapter" &&
+    parts[3]
+  ) {
+    chapterView(parts[3]);
+  } else if (
+    parts[0] === "novel" &&
+    parts[1] === "linguistic-fantasy"
+  ) {
+    novelView();
+  } else {
+    homeView();
+  }
+
+  window.scrollTo(0, 0);
 }
 
-const burger = $("#burger");
+/* Language */
+document.querySelector("#langToggle")
+  .addEventListener("click", () => {
+    setLanguage(currentLang === "ar" ? "en" : "ar");
+  });
 
-if (burger) {
-  burger.addEventListener("click", event => {
-    event.stopPropagation();
-
+/* Mobile menu */
+document.querySelector("#menuBtn")
+  .addEventListener("click", () => {
     document.body.classList.toggle("menu-open");
 
-    burger.textContent =
+    document.querySelector("#menuBtn").textContent =
       document.body.classList.contains("menu-open")
         ? "✕"
         : "☰";
   });
-}
 
-$$(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.body.classList.remove("menu-open");
-
-    if (burger) {
-      burger.textContent = "☰";
-    }
+document.querySelectorAll(".nav-links a")
+  .forEach(link => {
+    link.addEventListener("click", () => {
+      document.body.classList.remove("menu-open");
+      document.querySelector("#menuBtn").textContent = "☰";
+    });
   });
-});
-
-document.addEventListener("click", event => {
-  if (
-    document.body.classList.contains("menu-open") &&
-    !event.target.closest(".nav-links") &&
-    !event.target.closest("#burger")
-  ) {
-    document.body.classList.remove("menu-open");
-
-    if (burger) {
-      burger.textContent = "☰";
-    }
-  }
-});
 
 window.addEventListener("hashchange", route);
 
-setLang(currentLang);
+/* بداية الموقع */
+setLanguage(currentLang);
 </script>
 
 </body>
