@@ -797,6 +797,9 @@ const supabaseClient = window.supabase.createClient(
 const linguisticFantasyImage =
   "https://raw.githubusercontent.com/moussasour/mb-novels/main/linguistic-fantasy-hero.png";
 
+const keeperOfLastHourImage =
+  "https://raw.githubusercontent.com/moussasour/mb-novels/main/The%20Keeper%20of%20the%20Last%20Hour.png";
+
 /* =====================================================
    الترجمة
    ===================================================== */
@@ -891,6 +894,109 @@ const novels = {
       "A world where languages are spells, words shape reality, and every forgotten tongue hides an ancient power.",
 
     chapters: []
+  }
+};
+
+/* =====================================================
+   بيانات القصص القصيرة
+   ===================================================== */
+
+const shortStories = {
+  "haris-al-saa-al-akhira": {
+    titleAr: "حارس الساعة الأخيرة",
+    titleEn: "The Keeper of the Last Hour",
+
+    image: keeperOfLastHourImage,
+
+    descriptionAr:
+      "في برج عتيق على حافة الجبل، يكتشف صبي فضولي سرًا يجعله حارسًا للذكريات التي ينساها العالم.",
+
+    descriptionEn:
+      "In an ancient tower on the mountain's edge, a curious boy discovers a secret that makes him the keeper of the memories the world forgets.",
+
+    chapters: [
+      {
+        id: "ch1",
+        titleAr: "برج الساعة الأخيرة",
+        titleEn: "The Tower of the Last Hour",
+        contentAr: [
+          "في القرية المعلّقة على حافة الجبل، حيث تلتقي الغيوم بالحجر، كان هناك برج عتيق لا يعرف أحد متى بُني. أهل القرية يسمّونه \"برج الساعة الأخيرة\"، ويقولون إن فيه ساعة رملية عملاقة تحصي الوقت المتبقي للعالم قبل أن يبتلعه الظلام الكبير.",
+          "كان \"ياسين\" صبيًا في الثالثة عشرة، فضوليًا أكثر مما ينبغي، ويكره الصمت الذي يخيّم على القرية كلما اقترب أحد من ذلك البرج. في ليلة اكتمل فيها القمر وبدا وكأنه عين فضية تراقب الجميع، تسلّل ياسين من نافذة غرفته وركض نحو البرج، متجاهلاً كل التحذيرات التي سمعها طوال حياته.",
+          "الباب الحديدي كان مواربًا، كأنه ينتظره. دخل ياسين، وصعد درجًا حلزونيًا لا نهاية له، حتى وصل إلى غرفة دائرية تتوسطها ساعة رملية بحجم شجرة كاملة، ترفرف حبات رملها الذهبية في الهواء بدلًا من أن تسقط."
+        ],
+        contentEn: [
+          "In the village perched on the mountain's edge, where clouds meet stone, stood an ancient tower no one remembered building. The villagers called it \"the Tower of the Last Hour,\" and said that inside it a giant hourglass counted down the time left for the world before the great darkness swallowed it whole.",
+          "Yasin was a boy of thirteen, more curious than he should have been, and he hated the silence that fell over the village whenever anyone drew near that tower. On a night when the moon was full and looked like a silver eye watching everyone, Yasin slipped out through his window and ran toward the tower, ignoring every warning he had heard his whole life.",
+          "The iron door stood ajar, as though it had been waiting for him. Yasin stepped inside and climbed an endless spiral staircase until he reached a round chamber, where a tree-sized hourglass stood at its center, its golden grains of sand drifting upward through the air instead of falling."
+        ]
+      },
+      {
+        id: "ch2",
+        titleAr: "الحارس بين الظلال",
+        titleEn: "The Keeper in the Shadows",
+        contentAr: [
+          "\"لم يأتِ أحد منذ مئة عام.\"",
+          "صوت عميق كالحجر جاء من الظلال. خرج منها كائن طويل، جسده منسوج من جذور وأغصان متشابكة، وعيناه شعلتان خضراوان هادئتان.",
+          "\"من أنت؟\" سأل ياسين، محاولًا أن يبدو أكثر شجاعة مما يشعر به.",
+          "\"أنا الحارس. أحصي الرمل، فصلًا بعد فصل، لأمنع الزمن من أن ينهار على نفسه.\" أشار الكائن إلى الساعة. \"كل حبة رمل هي ذكرى ينساها أحدهم في العالم الخارجي. حين تُنسى كل الذكريات، يتوقف الزمن، ويبتلع الظلام كل شيء.\""
+        ],
+        contentEn: [
+          "\"No one has come in a hundred years.\"",
+          "A voice as deep as stone came from the shadows. From them emerged a tall being, its body woven from roots and tangled branches, its eyes two calm green flames.",
+          "\"Who are you?\" Yasin asked, trying to sound braver than he felt.",
+          "\"I am the Keeper. I count the sand, hour by hour, to keep time from collapsing on itself.\" The creature gestured toward the hourglass. \"Every grain of sand is a memory someone in the outside world has forgotten. When every memory is forgotten, time stops, and the darkness swallows everything.\""
+        ]
+      },
+      {
+        id: "ch3",
+        titleAr: "الذكريات المنسية",
+        titleEn: "The Forgotten Memories",
+        contentAr: [
+          "نظر ياسين إلى الساعة، فرأى فيها ومضات: وجه جدته وهي تحكي له حكاية قبل النوم، أول يوم ذهب فيه إلى المدرسة، ضحكة أخته الصغيرة. كل ذكرى كانت تتحول إلى حبة رمل تطير نحو الأعلى بدلًا من السقوط.",
+          "\"لماذا تصعد الحبات ولا تسقط؟\" سأل.",
+          "ابتسم الحارس ابتسامة حزينة. \"لأن العالم ينسى أسرع مما يتذكر. أنا أحاول إبطاء الأمر، حبة رمل في كل مرة، بجمع الذكريات المنسية وإعادتها إلى الساعة قبل أن تضيع للأبد.\""
+        ],
+        contentEn: [
+          "Yasin looked at the hourglass and saw flashes within it: his grandmother's face as she told him a bedtime story, his first day at school, his little sister's laugh. Each memory turned into a grain of sand that drifted upward instead of falling.",
+          "\"Why do the grains rise instead of fall?\" he asked.",
+          "The Keeper smiled sadly. \"Because the world forgets faster than it remembers. I try to slow it down, one grain at a time, gathering forgotten memories and returning them to the hourglass before they're lost forever.\""
+        ]
+      },
+      {
+        id: "ch4",
+        titleAr: "ثمن التذكّر",
+        titleEn: "The Price of Remembering",
+        contentAr: [
+          "شعر ياسين بثقل الأمر يجثم على صدره. \"وماذا لو نفد الرمل؟\"",
+          "\"عندها يُنسى العالم كله، دفعة واحدة.\" نظر الحارس إليه مباشرة. \"لهذا أحتاج إلى حارس جديد كل قرن. شخص يتذكر بقوة كافية ليطعم الساعة بذكرياته الخاصة حين يشحّ الرمل.\"",
+          "فهم ياسين حينها لماذا شعر بجذب غريب نحو البرج طوال حياته. لم يكن صدفة أنه الوحيد في القرية الذي لم ينسَ يومًا واحدًا من طفولته، ولا حتى أصغر التفاصيل.",
+          "\"هل سأنسى عائلتي إن بقيت هنا؟\" سأل بصوت مرتجف.",
+          "\"العكس تمامًا،\" قال الحارس. \"ستتذكر كل شيء، إلى الأبد. لكن الثمن أن تحمل ذكريات العالم كله معك.\""
+        ],
+        contentEn: [
+          "Yasin felt the weight of it settle on his chest. \"And what happens if the sand runs out?\"",
+          "\"Then the whole world is forgotten, all at once.\" The Keeper looked straight at him. \"That is why I need a new keeper every century — someone who remembers strongly enough to feed the hourglass with their own memories when the sand runs low.\"",
+          "Yasin understood then why he had always felt a strange pull toward the tower. It was no coincidence that he was the only one in the village who had never forgotten a single day of his childhood, not even the smallest detail.",
+          "\"Will I forget my family if I stay here?\" he asked, his voice trembling.",
+          "\"Quite the opposite,\" said the Keeper. \"You will remember everything, forever. But the price is carrying the memories of the whole world with you.\""
+        ]
+      },
+      {
+        id: "ch5",
+        titleAr: "حارس جديد",
+        titleEn: "A New Keeper",
+        contentAr: [
+          "فكّر ياسين طويلًا، ثم مدّ يده ولمس الساعة. تدفقت فيه موجة من الصور: وجوه لم يرها قط، لغات لم يسمعها، حروب انتهت وأفراح نُسيت. كل شيء صار جزءًا منه.",
+          "حين خرجت الشمس في الصباح، عاد ياسين إلى قريته كما هو، يمشي بين الناس، يبتسم لأمه، يلعب مع أصدقائه. لكن في عينيه، وميض أخضر خافت لم يكن موجودًا من قبل.",
+          "وفي أعلى الجبل، ظلّ البرج صامتًا كعادته، لكن حبات الرمل الذهبية استمرت في الصعود، حبة تلو الأخرى، محمولة على أكتاف صبي تعلّم أن التذكّر أحيانًا يكون أثقل من النسيان — وأجمل."
+        ],
+        contentEn: [
+          "Yasin thought for a long while, then reached out and touched the hourglass. A wave of images poured through him: faces he had never seen, languages he had never heard, wars that had ended and joys that had been forgotten. Everything became part of him.",
+          "When the sun rose the next morning, Yasin returned to his village just as before, walking among the people, smiling at his mother, playing with his friends. But in his eyes, there was now a faint green glimmer that hadn't been there before.",
+          "And high on the mountain, the tower stood silent as always, but the golden grains of sand kept rising, one after another, carried on the shoulders of a boy who had learned that remembering can sometimes be heavier than forgetting — and more beautiful."
+        ]
+      }
+    ]
   }
 };
 
@@ -1221,19 +1327,35 @@ function novelsView() {
         </h2>
 
         <div class="novels-carousel">
-          <div class="empty-state">
-            <span class="icon">📚</span>
-            <h3>
-              ${currentLang === "ar"
-                ? "لا توجد قصص قصيرة بعد"
-                : "No short stories yet"}
-            </h3>
-            <p>
-              ${currentLang === "ar"
-                ? "ستتم إضافة القصص القصيرة لاحقًا."
-                : "Short stories will be added later."}
-            </p>
-          </div>
+          ${Object.entries(shortStories).map(([storyId, story]) => `
+            <a
+              class="novel-card-link"
+              href="#/story/${storyId}"
+            >
+              <article class="novel-card">
+
+                <img
+                  src="${story.image}"
+                  alt="${story.titleEn}"
+                >
+
+                <div class="novel-card-content">
+                  <h3>
+                    ${currentLang === "ar" ? story.titleAr : story.titleEn}
+                  </h3>
+
+                  <p>
+                    ${
+                      currentLang === "ar"
+                        ? story.descriptionAr
+                        : story.descriptionEn
+                    }
+                  </p>
+                </div>
+
+              </article>
+            </a>
+          `).join("")}
         </div>
 
         <h2 class="novels-section-title">
@@ -1449,6 +1571,183 @@ function chapterView(chapterId) {
   `;
 }
 
+/* تفاصيل القصة القصيرة */
+function storyView(storyId) {
+  const story = shortStories[storyId];
+
+  if (!story) {
+    novelsView();
+    return;
+  }
+
+  const chapters = story.chapters || [];
+  const first = chapters[0];
+  const latest = chapters[chapters.length - 1];
+
+  const title = currentLang === "ar" ? story.titleAr : story.titleEn;
+
+  const description =
+    currentLang === "ar"
+      ? story.descriptionAr
+      : story.descriptionEn;
+
+  const firstButton = first
+    ? `
+      <a
+        class="chapter-button secondary"
+        href="#/story/${storyId}/chapter/${first.id}"
+      >
+        ${t("firstChapter")}
+      </a>
+    `
+    : `
+      <span class="chapter-button secondary disabled">
+        ${t("firstChapter")}
+      </span>
+    `;
+
+  const latestButton = latest
+    ? `
+      <a
+        class="chapter-button"
+        href="#/story/${storyId}/chapter/${latest.id}"
+      >
+        ${t("latestChapter")}
+      </a>
+    `
+    : `
+      <span class="chapter-button disabled">
+        ${t("latestChapter")}
+      </span>
+    `;
+
+  const chaptersHTML = chapters.length === 0
+    ? `
+      <div class="chapter-empty">
+        <span class="icon">📖</span>
+        <h2>${t("noChapters")}</h2>
+        <p>${t("noChaptersText")}</p>
+      </div>
+    `
+    : chapters.map((chapter, index) => `
+      <a
+        class="chapter-item"
+        href="#/story/${storyId}/chapter/${chapter.id}"
+      >
+        ${t("chapter")} ${index + 1}:
+        ${
+          currentLang === "ar"
+            ? escapeHTML(chapter.titleAr)
+            : escapeHTML(chapter.titleEn)
+        }
+      </a>
+    `).join("");
+
+  app.innerHTML = `
+    <section class="section">
+      <div class="wrap novel-details">
+
+        <a href="#/novels" class="reader-back">
+          ← ${t("back")}
+        </a>
+
+        <div class="novel-details-box">
+
+          <img
+            class="novel-cover"
+            src="${story.image}"
+            alt="${title}"
+          >
+
+          <div class="novel-details-info">
+
+            <h1>
+              ${title}
+            </h1>
+
+            <p class="novel-description">
+              ${description}
+            </p>
+
+            <div class="chapter-count">
+              ${t("totalChapters")}:
+              <strong>${chapters.length}</strong>
+            </div>
+
+            <div class="chapter-buttons">
+              ${firstButton}
+              ${latestButton}
+            </div>
+
+          </div>
+
+        </div>
+
+        <h2 class="novels-section-title">
+          ${t("chapters")}
+        </h2>
+
+        <div class="chapter-list">
+          ${chaptersHTML}
+        </div>
+
+      </div>
+    </section>
+  `;
+}
+
+/* صفحة فصل القصة القصيرة */
+function storyChapterView(storyId, chapterId) {
+  const story = shortStories[storyId];
+
+  if (!story) {
+    novelsView();
+    return;
+  }
+
+  const chapter = story.chapters.find(
+    item => item.id === chapterId
+  );
+
+  if (!chapter) {
+    storyView(storyId);
+    return;
+  }
+
+  const title =
+    currentLang === "ar"
+      ? chapter.titleAr
+      : chapter.titleEn;
+
+  const content =
+    currentLang === "ar"
+      ? chapter.contentAr
+      : chapter.contentEn;
+
+  app.innerHTML = `
+    <section class="section">
+      <div class="wrap">
+
+        <a
+          href="#/story/${storyId}"
+          class="reader-back"
+        >
+          ← ${t("back")}
+        </a>
+
+        <article class="chapter-content">
+          <h2>${escapeHTML(title)}</h2>
+
+          ${content.map(paragraph => `
+            <p>${escapeHTML(paragraph)}</p>
+          `).join("")}
+        </article>
+
+      </div>
+    </section>
+  `;
+}
+
 /* عن الموقع */
 function aboutView() {
   setActive("about");
@@ -1509,6 +1808,18 @@ function route() {
     parts[1] === "linguistic-fantasy"
   ) {
     novelView();
+  } else if (
+    parts[0] === "story" &&
+    parts[1] &&
+    parts[2] === "chapter" &&
+    parts[3]
+  ) {
+    storyChapterView(parts[1], parts[3]);
+  } else if (
+    parts[0] === "story" &&
+    parts[1]
+  ) {
+    storyView(parts[1]);
   } else {
     homeView();
   }
